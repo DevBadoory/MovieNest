@@ -1,5 +1,6 @@
 import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
 import HomePageGrid from "./components/HomePageGrid";
+import "./index.css";
 
 const App = () => {
   return (

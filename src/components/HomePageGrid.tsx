@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard";
 
 const HomePageGrid = () => {
   const { data: movies, error, isLoading } = useTrending();
+  console.log(movies);
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
@@ -27,7 +28,7 @@ const HomePageGrid = () => {
         }}
       >
         {movies?.results.map((movie) => (
-          <MovieCard movie={movie} />
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </SimpleGrid>
     </>
