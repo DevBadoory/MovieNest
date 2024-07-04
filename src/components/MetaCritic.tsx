@@ -7,12 +7,7 @@ const MetaCritic = ({ children }: props) => {
   const metacritic = Math.round(children * 10);
 
   return (
-    <Box
-      position="relative"
-      bottom={7}
-      height="1
-  .4rem"
-    >
+    <Box position="relative" bottom={7} height="1.9rem">
       <CircularProgress
         fontWeight="bold"
         fontSize="3rem"

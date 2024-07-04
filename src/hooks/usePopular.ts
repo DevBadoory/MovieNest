@@ -4,10 +4,10 @@ import Trends from "../entities/Trends"
 
 
 
-const apiClient = new ApiClient<Trends>('/trending/all/day')
+const apiClient = new ApiClient<Trends>('/movie/popular')
 
-const useTrending = () => useQuery({
-    queryKey: ['trending'],
+const usePopular = () => useQuery({
+    queryKey: ['popular'],
     queryFn: apiClient.getAll
 })
-export default useTrending
+export default usePopular
