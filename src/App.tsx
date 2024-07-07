@@ -1,5 +1,6 @@
-import { Box, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import HomePageGrid from "./components/HomePageGrid";
+import NavBar from "./components/NavBar";
 import "./index.css";
 
 const App = () => {
@@ -23,9 +24,14 @@ const App = () => {
     //     <GridItem area="aside"></GridItem>
     //   </Show>
     // </Grid>
-    <Box padding={8}>
-      <HomePageGrid />
-    </Box>
+    <>
+      <Box padding={8}>
+        <NavBar />
+      </Box>
+      <Box padding={8}>
+        <HomePageGrid />
+      </Box>
+    </>
   );
 };
 
