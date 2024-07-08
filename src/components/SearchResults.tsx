@@ -1,14 +1,15 @@
 import { Box, Heading, Image } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 import useSearch from "../hooks/useSearch";
 import { getImage } from "../services/img_path";
 
 const SearchResults = () => {
-  const { data } = useSearch();
-  console.log(data);
+  const slug = useParams();
+  const { data } = useSearch(slug.slug!);
   return (
     <div>
       {data?.results.map((search) => (
-        <Box>
+        <Box key={search.id}>
           <Image
             src={getImage(
               search.backdrop_path || search.poster_path || search.profile_path

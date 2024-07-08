@@ -1,20 +1,17 @@
 import { useQuery } from "@tanstack/react-query"
-import ApiClient from "../services/api-client"
 import Search from "../entities/Search"
-import  useSearchStore  from '../store'
+import ApiClient from "../services/api-client"
 
 
 
 const apiClient = new ApiClient<Search>('/search/multi')
 
-const useSearch = () => {
-    const searchQuery = useSearchStore(s => s.searchQuery)
+const useSearch = (slug: string) => {
     return useQuery({
-        queryKey: ['search', searchQuery],
+        queryKey: ['search', slug],
         queryFn: () => apiClient.getAll({
             params:{
-                query: searchQuery
-    
+                query: slug
             }
         })
     })
