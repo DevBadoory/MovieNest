@@ -1,18 +1,22 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
-import useSearch from "../hooks/useSearch";
+import useSearchStore from "../store";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
-  const { data } = useSearch();
+  const setSearchQuery = useSearchStore((s) => s.setSearchQuery);
+  const navigate = useNavigate();
 
-  console.log(data);
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (ref.current) console.log(ref.current.value);
+        if (ref.current) {
+          setSearchQuery(ref.current.value);
+          navigate(`/search/${ref.current.value}`);
+        }
       }}
     >
       <InputGroup>

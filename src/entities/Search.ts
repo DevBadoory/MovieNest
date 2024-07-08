@@ -1,6 +1,7 @@
 export default interface Search {
     adult: boolean;
     backdrop_path: string;
+    profile_path: string
     genre_ids: number[];
     id: number;
     media_type: string;
