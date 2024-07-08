@@ -1,6 +1,6 @@
 import { Box, Heading, Image } from "@chakra-ui/react";
 import useSearch from "../hooks/useSearch";
-import { getImage } from "../services/api-client";
+import { getImage } from "../services/img_path";
 
 const SearchResults = () => {
   const { data } = useSearch();

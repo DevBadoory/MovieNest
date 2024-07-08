@@ -1,6 +1,6 @@
 import { Box, Heading, Image, Text } from "@chakra-ui/react";
 import Trends from "../entities/Trends";
-import { getImage } from "../services/api-client";
+import { getImage } from "../services/img_path";
 import MetaCritic from "./MetaCritic";
 
 interface Props {

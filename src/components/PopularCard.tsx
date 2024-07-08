@@ -1,5 +1,5 @@
 import { Text, Box, Image, Heading } from "@chakra-ui/react";
-import { getImage } from "../services/api-client";
+import { getImage } from "../services/img_path";
 import MetaCritic from "./MetaCritic";
 import usePopular from "../hooks/usePopular";
 import Trends from "../entities/Trends";
