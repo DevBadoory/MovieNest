@@ -1,4 +1,4 @@
-import { Heading, Button, Box, HStack, Badge } from "@chakra-ui/react";
+import { Box, Button, HStack, Heading } from "@chakra-ui/react";
 
 interface props {
   setCategory: (category: string) => void;
