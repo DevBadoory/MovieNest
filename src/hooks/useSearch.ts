@@ -6,10 +6,10 @@ import ApiClient from "../services/api-client"
 
 const apiClient = new ApiClient<Search>('/search/')
 
-const useSearch = (slug: string, type: string) => {
+const useSearch = (slug: string, category: string) => {
     return useQuery({
-        queryKey: ['search', slug, type],
-        queryFn: () => apiClient.get({params: {query: slug}}, type)
+        queryKey: ['search', slug, category],
+        queryFn: () => apiClient.get({params: {query: slug}}, category)
     })
 }
 export default useSearch
