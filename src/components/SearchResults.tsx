@@ -1,25 +1,36 @@
-import { Box, Heading, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  GridItem,
+  HStack,
+  Heading,
+  Image,
+  Text,
+} from "@chakra-ui/react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useSearch from "../hooks/useSearch";
-import { getImage } from "../services/img_path";
+import SearchPerson from "./SearchPerson";
 
 const SearchResults = () => {
+  const [type, setType] = useState("person");
   const slug = useParams();
-  const { data } = useSearch(slug.slug!);
+  const { data } = useSearch(slug.slug!, type);
   return (
-    <div>
-      {data?.results.map((search) => (
-        <Box key={search.id}>
-          <Image
-            src={getImage(
-              search.backdrop_path || search.poster_path || search.profile_path
-            )}
-          />
-
-          <Heading>{search.name}</Heading>
-        </Box>
-      ))}
-    </div>
+    <Grid
+      templateColumns={{
+        lg: "300px 1fr",
+      }}
+    >
+      <GridItem></GridItem>
+      <GridItem>
+        {data?.data.results.map((person) => (
+          <Box mb={2}>
+            <SearchPerson person={person} />
+          </Box>
+        ))}
+      </GridItem>
+    </Grid>
   );
 };
 

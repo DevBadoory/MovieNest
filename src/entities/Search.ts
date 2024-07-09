@@ -1,10 +1,13 @@
+import KnownFor from "./knownFor";
+
 export default interface Search {
-    adult: boolean;
     backdrop_path: string;
     profile_path: string
     genre_ids: number[];
     id: number;
     media_type: string;
+    known_for_department?: string
+    known_for?: KnownFor[]
     original_language: string;
     original_title?: string; // optional
     overview: string;
@@ -19,4 +22,5 @@ export default interface Search {
     vote_average: number;
     vote_count: number;
   }
+  
   
