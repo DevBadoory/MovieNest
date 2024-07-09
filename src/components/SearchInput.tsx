@@ -7,15 +7,17 @@ const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (ref.current && ref.current.value.trim() !== "") {
+      navigate(`/search/${ref.current.value}`);
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        if (ref.current) {
-          navigate(`/search/${ref.current.value}`);
-        }
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <InputGroup>
         <InputLeftElement children={<BsSearch />} />
         <Input
