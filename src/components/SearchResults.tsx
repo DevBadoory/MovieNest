@@ -5,6 +5,7 @@ import useSearch from "../hooks/useSearch";
 import SearchCategorySelector from "./SearchCategorySelector";
 import SearchPerson from "./SearchPerson";
 import SearchMovies from "./SearchMovies";
+import SearchTVShows from "./SearchTvShows";
 
 const SearchResults = () => {
   const [category, setCategory] = useState("movie");
@@ -19,9 +20,9 @@ const SearchResults = () => {
         />
       </GridItem>
       <GridItem paddingX={8}>
-        {data?.data.results.map((movie) => (
-          <Box key={movie.id} mb={2}>
-            <SearchMovies movie={movie} />
+        {data?.data.results.map((tvShow) => (
+          <Box key={tvShow.id} mb={2}>
+            <SearchTVShows tvShow={tvShow} />
           </Box>
         ))}
       </GridItem>
