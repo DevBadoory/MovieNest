@@ -3,14 +3,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useSearch from "../hooks/useSearch";
 import SearchCategorySelector from "./SearchCategorySelector";
-import SearchPerson from "./SearchPerson";
-import SearchMovies from "./SearchMovies";
-import SearchTVShows from "./SearchTvShows";
+import SearchItem from "./SearchItem";
 
 const SearchResults = () => {
   const [category, setCategory] = useState("movie");
   const slug = useParams();
   const { data } = useSearch(slug.slug!, category);
+
   return (
     <Grid>
       <GridItem paddingX={8}>
@@ -20,9 +19,9 @@ const SearchResults = () => {
         />
       </GridItem>
       <GridItem paddingX={8}>
-        {data?.data.results.map((tvShow) => (
-          <Box key={tvShow.id} mb={2}>
-            <SearchTVShows tvShow={tvShow} />
+        {data?.data.results.map((item) => (
+          <Box key={item.id} mb={2}>
+            <SearchItem item={item} />
           </Box>
         ))}
       </GridItem>

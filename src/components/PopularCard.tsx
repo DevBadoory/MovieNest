@@ -1,8 +1,7 @@
-import { Text, Box, Image, Heading } from "@chakra-ui/react";
+import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import Trends from "../entities/Trends";
 import { getImage } from "../services/img_path";
 import MetaCritic from "./MetaCritic";
-import usePopular from "../hooks/usePopular";
-import Trends from "../entities/Trends";
 
 interface props {
   popular: Trends;
