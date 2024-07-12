@@ -1,28 +1,36 @@
-import { Box, HStack, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Image, Text } from "@chakra-ui/react";
 import Search from "../entities/Search";
 import { getImage } from "../services/img_path";
+import { Link } from "react-router-dom";
 
 interface Props {
   item: Search;
+  selectedCategory: string;
 }
 
-const SearchItem = ({ item }: Props) => {
+const SearchItem = ({ item, selectedCategory }: Props) => {
   const title = item.title || item.name;
   const date = item.release_date || item.first_air_date;
   const imagePath = item.backdrop_path || item.poster_path || item.profile_path;
 
+  const detailPath = selectedCategory ? `/${selectedCategory}/${item.id}` : "";
+
   return (
     <HStack>
-      <Image
-        height="141px"
-        width="94px"
-        minWidth="94px"
-        objectFit="cover"
-        borderRadius="4px"
-        src={getImage(imagePath)}
-      />
+      <Link to={detailPath}>
+        <Image
+          height="141px"
+          width="94px"
+          minWidth="94px"
+          objectFit="cover"
+          borderRadius="4px"
+          src={getImage(imagePath)}
+        />
+      </Link>
       <Box ml={2}>
-        <Heading fontSize="1.1rem">{title}</Heading>
+        <Button variant="link" fontSize="1.1rem">
+          <Link to={detailPath}>{title}</Link>
+        </Button>
         {date && (
           <Text fontSize="sm" color="#6b6a6a" fontWeight="300">
             {date}

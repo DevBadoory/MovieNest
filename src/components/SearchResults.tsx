@@ -21,7 +21,7 @@ const SearchResults = () => {
       <GridItem paddingX={8}>
         {data?.data.results.map((item) => (
           <Box key={item.id} mb={2}>
-            <SearchItem item={item} />
+            <SearchItem item={item} selectedCategory={category} />
           </Box>
         ))}
       </GridItem>
