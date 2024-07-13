@@ -24,7 +24,8 @@ const SearchCategorySelector = ({ setCategory, selectedCategory }: props) => {
       <HStack>
         {searchTypes.map((s) => (
           <Button
-            color={s.value === selectedCategory ? "white" : "#494949"}
+            color={s.value === selectedCategory ? "" : "#494949"}
+            fontWeight={s.value === selectedCategory ? "700" : ""}
             variant="link"
             padding={4}
             textAlign="left"
