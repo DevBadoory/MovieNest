@@ -11,7 +11,7 @@ interface Props {
 const SearchItem = ({ item, selectedCategory }: Props) => {
   const title = item.title || item.name;
   const date = item.release_date || item.first_air_date;
-  const imagePath = item.backdrop_path || item.poster_path || item.profile_path;
+  const imagePath = item.poster_path || item.profile_path;
 
   const detailPath = selectedCategory ? `/${selectedCategory}/${item.id}` : "";
 
