@@ -16,7 +16,7 @@ const MetaCritic = ({ children }: props) => {
         backgroundColor="#081c22"
         borderRadius="50%"
       >
-        <CircularProgressLabel>
+        <CircularProgressLabel color="white">
           {metacritic === 0 ? "NR" : metacritic + "%"}
         </CircularProgressLabel>
       </CircularProgress>
