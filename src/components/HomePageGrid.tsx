@@ -23,7 +23,7 @@ const HomePageGrid = () => {
   return (
     <Box padding="2rem">
       <Box mb={10}>
-        <Heading mb={5}>Trends</Heading>
+        <Heading mb={5}>Trending</Heading>
         <SimpleGrid
           gridAutoFlow="column"
           gridAutoColumns={{ sm: "48%", md: "30%", lg: "21%", xl: "14%" }}
