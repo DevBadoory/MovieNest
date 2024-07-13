@@ -28,7 +28,8 @@ const PersonDetailPage = () => {
       <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={10}>
         <GridItem>
           <Image
-            width="100%"
+            height="450px"
+            width="300px"
             objectFit="cover"
             src={getImage(person.profile_path || "")}
             borderRadius="md"
