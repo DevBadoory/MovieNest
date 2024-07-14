@@ -26,7 +26,13 @@ const HomePageGrid = () => {
         <Heading mb={5}>Trending</Heading>
         <SimpleGrid
           gridAutoFlow="column"
-          gridAutoColumns={{ sm: "48%", md: "30%", lg: "21%", xl: "14%" }}
+          gridAutoColumns={{
+            base: "65%",
+            sm: "45%",
+            md: "30%",
+            lg: "21%",
+            xl: "14%",
+          }}
           gap="1rem"
           overflowX="scroll"
           scrollBehavior="smooth"
@@ -50,7 +56,13 @@ const HomePageGrid = () => {
         <Heading mb={5}>Popular</Heading>
         <SimpleGrid
           gridAutoFlow="column"
-          gridAutoColumns={{ sm: "48%", md: "30%", lg: "21%", xl: "14%" }}
+          gridAutoColumns={{
+            base: "65%",
+            sm: "45%",
+            md: "30%",
+            lg: "21%",
+            xl: "14%",
+          }}
           gap="1rem"
           overflowX="auto"
           scrollBehavior="smooth"

@@ -20,7 +20,9 @@ const TrendsCard = ({ trend }: Props) => {
       </Link>
       <MetaCritic children={trend.vote_average} />
       <Link to={`${trend.media_type}/${trend.id}`}>
-        <Heading fontSize="1.2rem">{trend.title || trend.name}</Heading>
+        <Heading fontSize={{ base: ".9rem", sm: "1.1rem" }}>
+          {trend.title || trend.name}
+        </Heading>
       </Link>
       <Text mt="0.3rem" color="gray.400">
         {trend.release_date || trend.first_air_date}

@@ -9,7 +9,6 @@ interface props {
 }
 
 const PopularCard = ({ popular }: props) => {
-  console.log(popular);
   return (
     <Box>
       <Link to={`movie/${popular.id}`}>
@@ -21,7 +20,9 @@ const PopularCard = ({ popular }: props) => {
       </Link>
       <MetaCritic children={popular.vote_average} />
       <Link to={`movie/${popular.id}`}>
-        <Heading fontSize="1.2rem">{popular.title || popular.name}</Heading>
+        <Heading fontSize={{ base: ".9rem", sm: "1.1rem" }}>
+          {popular.title || popular.name}
+        </Heading>
       </Link>
       <Text mt="0.3rem" color="gray.400">
         {popular.release_date || popular.first_air_date}
