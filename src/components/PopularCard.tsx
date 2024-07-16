@@ -9,6 +9,7 @@ interface props {
 }
 
 const PopularCard = ({ popular }: props) => {
+  const altText = `Poster for ${popular.title || popular.name}`;
   return (
     <Box>
       <Link to={`movie/${popular.id}`}>
@@ -16,6 +17,7 @@ const PopularCard = ({ popular }: props) => {
           borderRadius="10px"
           overflow="hidden"
           src={getImage(popular.poster_path)}
+          alt={altText}
         />
       </Link>
       <MetaCritic children={popular.vote_average} />

@@ -9,6 +9,7 @@ interface Props {
 }
 
 const TrendsCard = ({ trend }: Props) => {
+  const altText = `Poster for ${trend.title || trend.name}`;
   return (
     <Box>
       <Link to={`${trend.media_type}/${trend.id}`}>
@@ -16,6 +17,7 @@ const TrendsCard = ({ trend }: Props) => {
           borderRadius="10px"
           overflow="hidden"
           src={getImage(trend.poster_path)}
+          alt={altText}
         />
       </Link>
       <MetaCritic children={trend.vote_average} />
