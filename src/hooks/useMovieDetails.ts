@@ -8,7 +8,7 @@ const apiClient = new ApiClient<Movie>('/movie/')
 const useMovieDetails = (id: string) => {
     return useQuery({
         queryKey: ['detail', id],
-        queryFn: () => apiClient.getMovieDetails(id)
+        queryFn: () => apiClient.getDetails(id)
     })
 }
 

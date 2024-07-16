@@ -8,7 +8,7 @@ const apiClient = new ApiClient<Person>('/person/')
 const usePersonDetails = (id: string) => {
     return useQuery({
         queryKey: ['detail', id],
-        queryFn: () => apiClient.getPersonDetails(id)
+        queryFn: () => apiClient.getDetails(id)
     })
 }
 
