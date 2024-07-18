@@ -29,7 +29,7 @@ const TVShowDetailPage = () => {
   const tvShow = show as TVShow;
 
   return (
-    <Box maxWidth="1400px" margin="auto" padding={5}>
+    <Box>
       <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={10}>
         <GridItem>
           <Image

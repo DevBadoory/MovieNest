@@ -21,7 +21,7 @@ const HomePageGrid = () => {
   if (popularsError) throw popularsError;
 
   return (
-    <Box padding="2rem">
+    <Box>
       <Box mb={10}>
         <Heading mb={5}>Trending</Heading>
         <SimpleGrid

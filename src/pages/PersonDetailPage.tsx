@@ -24,7 +24,7 @@ const PersonDetailPage = () => {
   if (!person) return <Text>No person data found.</Text>;
 
   return (
-    <Box maxWidth="1400px" margin="auto" padding={5}>
+    <Box>
       <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={10}>
         <GridItem>
           <Image

@@ -28,8 +28,20 @@ const SearchItem = ({ item, selectedCategory }: Props) => {
         />
       </Link>
       <Box ml={2}>
-        <Button variant="link" fontSize="1.1rem">
-          <Link to={detailPath}>{title}</Link>
+        <Button
+          as={Link}
+          to={detailPath}
+          variant="link"
+          fontSize="1.1rem"
+          fontWeight="700"
+          textAlign="left"
+          height="auto"
+          padding={0}
+          whiteSpace="normal"
+          lineHeight="1.2"
+          justifyContent="left"
+        >
+          {title}
         </Button>
         {date && (
           <Text fontSize="sm" color="#6b6a6a" fontWeight="300">
@@ -38,11 +50,21 @@ const SearchItem = ({ item, selectedCategory }: Props) => {
         )}
         {item.known_for_department && (
           <HStack spacing={1}>
-            <Text fontWeight="400">
-              {item.known_for_department}
-              {" •"}
-            </Text>
-            <Text fontWeight="300">
+            <Text
+              fontWeight="300"
+              textAlign="left"
+              height="auto"
+              padding={0}
+              whiteSpace="normal"
+              lineHeight="1.2"
+              justifyContent="left"
+            >
+              <Box as="span" fontWeight="600">
+                {item.known_for_department}
+              </Box>
+              <Box as="span" fontWeight="700">
+                {" • "}
+              </Box>
               {item.known_for?.map((k) => k.name || k.title).join(", ")}
             </Text>
           </HStack>

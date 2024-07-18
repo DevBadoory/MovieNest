@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useSearch from "../hooks/useSearch";
@@ -11,21 +11,21 @@ const SearchResults = () => {
   const { data } = useSearch(slug.slug!, category);
 
   return (
-    <Grid>
-      <GridItem paddingX={8}>
+    <Box>
+      <Box>
         <SearchCategorySelector
           setCategory={(category) => setCategory(category)}
           selectedCategory={category}
         />
-      </GridItem>
-      <GridItem paddingX={8}>
+      </Box>
+      <Box>
         {data?.data.results.map((item) => (
           <Box key={item.id} mb={2}>
             <SearchItem item={item} selectedCategory={category} />
           </Box>
         ))}
-      </GridItem>
-    </Grid>
+      </Box>
+    </Box>
   );
 };
 
