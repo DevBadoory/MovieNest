@@ -1,4 +1,11 @@
-import { Box, Button, HStack, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  HStack,
+  Image,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import Search from "../entities/Search";
 import { getImage } from "../services/img_path";
 import { Link } from "react-router-dom";
@@ -9,6 +16,8 @@ interface Props {
 }
 
 const SearchItem = ({ item, selectedCategory }: Props) => {
+  const { colorMode } = useColorMode();
+  const color = colorMode === "light" ? "#000" : "#fff";
   const title = item.title || item.name;
   const date = item.release_date || item.first_air_date;
   const imagePath = item.poster_path || item.profile_path;
@@ -40,6 +49,7 @@ const SearchItem = ({ item, selectedCategory }: Props) => {
           whiteSpace="normal"
           lineHeight="1.2"
           justifyContent="left"
+          color={color}
         >
           {title}
         </Button>
