@@ -1,8 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import dotenv from 'dotenv';
 
-// Load environment variables from .env file
-dotenv.config();
+const apiKey = import.meta.env.VITE_TMDB_API_KEY;
+
 
 export interface FetchResponse<T> {
   page: number;
@@ -14,7 +13,7 @@ const instanceAxios = axios.create({
   params: { page: '1' },
   headers: {
     accept: 'application/json',
-    Authorization: `Bearer ${process.env.TMDB_API_KEY}`
+    Authorization: `Bearer ${apiKey}`
   }
 });
 
