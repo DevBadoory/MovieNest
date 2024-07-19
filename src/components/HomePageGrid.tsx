@@ -1,8 +1,9 @@
-import { Box, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
-import useTrending from "../hooks/useTrending";
-import TrendsCard from "./TrendsCard";
-import PopularCard from "./PopularCard";
+import { Box, Spinner } from "@chakra-ui/react";
 import usePopular from "../hooks/usePopular";
+import useTrending from "../hooks/useTrending";
+import Carousel from "./Carousel";
+import PopularCard from "./PopularCard";
+import TrendsCard from "./TrendsCard";
 
 const HomePageGrid = () => {
   const {
@@ -22,66 +23,17 @@ const HomePageGrid = () => {
 
   return (
     <Box>
-      <Box mb={10}>
-        <Heading mb={5}>Trending</Heading>
-        <SimpleGrid
-          gridAutoFlow="column"
-          gridAutoColumns={{
-            base: "65%",
-            sm: "45%",
-            md: "30%",
-            lg: "21%",
-            xl: "14%",
-          }}
-          gap="1rem"
-          overflowX="scroll"
-          scrollBehavior="smooth"
-          css={{
-            "&::-webkit-scrollbar": {
-              display: "none",
-            },
-            "-ms-overflow-style": "none",
-            "scrollbar-width": "none",
-            "&:hover": {
-              overflowY: "auto",
-            },
-          }}
-        >
-          {trends?.results.map((trend) => (
-            <TrendsCard key={trend.id} trend={trend} />
-          ))}
-        </SimpleGrid>
-      </Box>
-      <Box>
-        <Heading mb={5}>Popular</Heading>
-        <SimpleGrid
-          gridAutoFlow="column"
-          gridAutoColumns={{
-            base: "65%",
-            sm: "45%",
-            md: "30%",
-            lg: "21%",
-            xl: "14%",
-          }}
-          gap="1rem"
-          overflowX="auto"
-          scrollBehavior="smooth"
-          css={{
-            "&::-webkit-scrollbar": {
-              display: "none",
-            },
-            "-ms-overflow-style": "none",
-            "scrollbar-width": "none",
-            "&:hover": {
-              overflowY: "auto",
-            },
-          }}
-        >
-          {populars?.results.map((popular) => (
-            <PopularCard key={popular.id} popular={popular} />
-          ))}
-        </SimpleGrid>
-      </Box>
+      <Carousel title="Trending">
+        {trends?.map((trend) => (
+          <TrendsCard key={trend.id} trend={trend}></TrendsCard>
+        ))}
+      </Carousel>
+
+      <Carousel title="Popular Movies">
+        {populars?.map((popular) => (
+          <PopularCard key={popular.id} popular={popular}></PopularCard>
+        ))}
+      </Carousel>
     </Box>
   );
 };
