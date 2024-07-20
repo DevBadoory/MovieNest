@@ -1,9 +1,10 @@
-import { Box, Spinner } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import usePopular from "../hooks/usePopular";
 import useTrending from "../hooks/useTrending";
 import Carousel from "./Carousel";
 import PopularCard from "./PopularCard";
 import TrendsCard from "./TrendsCard";
+import SkeletonLoader from "./SkeletonLoader";
 
 const HomePageGrid = () => {
   const {
@@ -17,23 +18,41 @@ const HomePageGrid = () => {
     isLoading: popularsLoading,
   } = usePopular();
 
-  if (trendsLoading || popularsLoading) return <Spinner />;
-  if (trendsError) throw trendsError;
-  if (popularsError) throw popularsError;
+  if (popularsError || trendsError) {
+    return (
+      <Text>
+        {popularsError?.message}
+        {trendsError?.message}
+      </Text>
+    );
+  }
+
+  const skeletons = [1, 2, 3, 4, 5, 6, 7];
+
+  const renderSkeletons = () =>
+    skeletons.map((skeleton) => <SkeletonLoader key={skeleton} />);
 
   return (
     <Box>
-      <Carousel title="Trending">
-        {trends?.map((trend) => (
-          <TrendsCard key={trend.id} trend={trend}></TrendsCard>
-        ))}
-      </Carousel>
+      {trendsLoading ? (
+        <Carousel title="Trending">{renderSkeletons()}</Carousel>
+      ) : (
+        <Carousel title="Trending">
+          {trends?.map((trend) => (
+            <TrendsCard key={trend.id} trend={trend} />
+          ))}
+        </Carousel>
+      )}
 
-      <Carousel title="Popular Movies">
-        {populars?.map((popular) => (
-          <PopularCard key={popular.id} popular={popular}></PopularCard>
-        ))}
-      </Carousel>
+      {popularsLoading ? (
+        <Carousel title="Popular Movies">{renderSkeletons()}</Carousel>
+      ) : (
+        <Carousel title="Popular Movies">
+          {populars?.map((popular) => (
+            <PopularCard key={popular.id} popular={popular} />
+          ))}
+        </Carousel>
+      )}
     </Box>
   );
 };
