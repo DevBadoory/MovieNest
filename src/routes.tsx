@@ -5,11 +5,13 @@ import SearchResults from "./components/SearchResults";
 import MovieDetailtPage from "./pages/MovieDetailtPage";
 import TVShowDetailPage from "./pages/TVShowDetailPage";
 import PersonDetailPage from "./pages/PersonDetailPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePageGrid /> },
       { path: "/search/:slug", element: <SearchResults /> },
