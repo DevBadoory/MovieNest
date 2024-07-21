@@ -36,6 +36,10 @@ class ApiClient<T> {
   getDetails = (id: string) => {
     return instanceAxios.get<T>(this.endpoint + id).then(res => res.data);
   }
+
+  getCredits = (id: string) => {
+    return instanceAxios.get<T>(this.endpoint + id + '/credits').then(res => res.data)
+  }
 }
 
 export default ApiClient;
