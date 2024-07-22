@@ -8,7 +8,7 @@ const apiclient = new ApiClient<MovieCredits>('/movie/')
 const useMovieCredits = (id: string) => {
     return useQuery({
         queryKey: ['credits', id],
-        queryFn: () => apiclient.getCredits(id)
+        queryFn: () => apiclient.getMovieCredits(id)
     })
 }
 

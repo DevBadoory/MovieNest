@@ -37,8 +37,12 @@ class ApiClient<T> {
     return instanceAxios.get<T>(this.endpoint + id).then(res => res.data);
   }
 
-  getCredits = (id: string) => {
+  getMovieCredits = (id: string) => {
     return instanceAxios.get<T>(this.endpoint + id + '/credits').then(res => res.data)
+  }
+
+  getTvShowCredits = (id: string) => {
+    return instanceAxios.get<T>(this.endpoint + id + '/aggregate_credits').then(res => res.data)
   }
 }
 
