@@ -1,4 +1,4 @@
-interface CastMember {
+export interface CastMember {
   adult: boolean;
   cast_id: number;
   character: string;
@@ -13,7 +13,7 @@ interface CastMember {
   profile_path: string;
 }
 
-interface CrewMember {
+export interface CrewMember {
   adult: boolean;
   credit_id: string;
   department: string;
