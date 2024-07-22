@@ -13,13 +13,18 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import CreditCarousel from "../components/CreditsCarousel";
 import MetaCriticDetailPage from "../components/MetaCriticDetailPage"; // Import the new component
+import useMovieCredits from "../hooks/useMovieCredits";
 import useMovieDetails from "../hooks/useMovieDetails";
 import { getImage } from "../services/img_path";
 
 const MovieDetailPage = () => {
   const { id } = useParams();
   const { data: movie, error, isLoading } = useMovieDetails(String(id));
+  const { data } = useMovieCredits(String(movie?.id));
+
+  const casts = data?.cast.slice(0, 8);
 
   if (isLoading) return <Spinner></Spinner>;
   if (error) throw error;
@@ -115,6 +120,7 @@ const MovieDetailPage = () => {
           </VStack>
         </GridItem>
       </Grid>
+      <CreditCarousel casts={casts || []} movieId={movie?.id} />
     </Box>
   );
 };
