@@ -19,7 +19,7 @@ const SearchResults = () => {
         />
       </Box>
       <Box>
-        {data?.data.results.map((item) => (
+        {data?.map((item) => (
           <Box key={item.id} mb={2}>
             <SearchItem item={item} selectedCategory={category} />
           </Box>

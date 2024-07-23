@@ -24,26 +24,15 @@ class ApiClient<T> {
     this.endpoint = endpoint;
   }
 
-  getAll = (config: AxiosRequestConfig) => {
+  getAll = (config?: AxiosRequestConfig) => {
     return instanceAxios.get<FetchResponse<T>>(this.endpoint, config)
       .then(res => res.data.results);
   }
 
-  get = (config: AxiosRequestConfig, category: string) => {
-    return instanceAxios.get<FetchResponse<T>>(this.endpoint + category, config);
+  get = (config?: AxiosRequestConfig) => {
+    return instanceAxios.get<T>(this.endpoint, config).then(res => res.data)
   }
 
-  getDetails = (id: string) => {
-    return instanceAxios.get<T>(this.endpoint + id).then(res => res.data);
-  }
-
-  getMovieCredits = (id: string) => {
-    return instanceAxios.get<T>(this.endpoint + id + '/credits').then(res => res.data)
-  }
-
-  getTvShowCredits = (id: string) => {
-    return instanceAxios.get<T>(this.endpoint + id + '/aggregate_credits').then(res => res.data)
-  }
 }
 
 export default ApiClient;

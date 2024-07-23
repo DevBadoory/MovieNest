@@ -22,7 +22,7 @@ import { getImage } from "../services/img_path";
 const MovieDetailPage = () => {
   const { id } = useParams();
   const { data: movie, error, isLoading } = useMovieDetails(String(id));
-  const { data } = useMovieCredits(String(movie?.id));
+  const { data } = useMovieCredits(String(id));
 
   const casts = data?.cast.slice(0, 8);
 

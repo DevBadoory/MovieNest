@@ -3,12 +3,13 @@ import ApiClient from "../services/api-client";
 import TvCredits from "../entities/TvShowCredits";
 
 
-const apiclient = new ApiClient<TvCredits>('/tv/')
 
 const useTvShowsCredits = (id: string) => {
+    const apiclient = new ApiClient<TvCredits>(`/tv/${id}/aggregate_credits`)
+
     return useQuery({
         queryKey: ['credits', id],
-        queryFn: () => apiclient.getTvShowCredits(id)
+        queryFn: () => apiclient.get()
     })
 }
 
