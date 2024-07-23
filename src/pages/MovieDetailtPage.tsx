@@ -120,7 +120,7 @@ const MovieDetailPage = () => {
           </VStack>
         </GridItem>
       </Grid>
-      <CreditCarousel casts={casts || []} movieId={movie?.id} />
+      <CreditCarousel casts={casts || []} showId={movie?.id} type={"movie"} />
     </Box>
   );
 };

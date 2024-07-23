@@ -18,10 +18,15 @@ import MetaCriticDetailPage from "../components/MetaCriticDetailPage";
 import useTVShowDetails from "../hooks/useTVShowDetails";
 import { getImage } from "../services/img_path";
 import { TVShow } from "../entities/TvShows";
+import useTvShowsCredits from "../hooks/useTvShowCredits";
+import CreditCarousel from "../components/CreditsCarousel";
 
 const TVShowDetailPage = () => {
   const { id } = useParams();
   const { data: show, error, isLoading } = useTVShowDetails(String(id));
+  const { data } = useTvShowsCredits(String(id));
+
+  const casts = data?.cast.slice(0, 8);
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
@@ -196,6 +201,7 @@ const TVShowDetailPage = () => {
           </VStack>
         </GridItem>
       </Grid>
+      <CreditCarousel casts={casts || []} showId={tvShow.id} type="tv" />
     </Box>
   );
 };

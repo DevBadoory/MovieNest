@@ -1,16 +1,27 @@
 import { Box, Button, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
-import { CastMember } from "../entities/MovieCredits";
+import { MovieCastMember } from "../entities/MovieCredits";
 import { getImage } from "../services/img_path";
+import { TvCastMember } from "../entities/TvShowCredits";
 
-interface props {
-  casts: CastMember[];
-  movieId?: number;
+interface Props {
+  casts: (MovieCastMember | TvCastMember)[];
+  showId?: number;
+  type: "movie" | "tv";
 }
 
-const CreditCarousel = ({ casts, movieId }: props) => {
-  console.log(typeof movieId);
+const CreditCarousel = ({ casts, showId, type }: Props) => {
+  const getRoleText = (person: MovieCastMember | TvCastMember) => {
+    if (type === "movie") {
+      return (person as MovieCastMember).character;
+    } else {
+      return (person as TvCastMember).roles
+        ?.map((role) => role.character)
+        .join(", ");
+    }
+  };
+
   return (
     <Box mb={10}>
       <SimpleGrid
@@ -55,7 +66,7 @@ const CreditCarousel = ({ casts, movieId }: props) => {
                 as={Link}
                 to={`/person/${person.id}`}
                 variant="link"
-                fontSize="1.1rem"
+                fontSize="1.2rem"
                 fontWeight="700"
                 textAlign="center"
                 height="auto"
@@ -65,8 +76,8 @@ const CreditCarousel = ({ casts, movieId }: props) => {
               >
                 {person.name}
               </Button>
-              <Text fontSize="1.1rem" fontWeight="light">
-                {person.character}
+              <Text fontSize="1rem" fontWeight="200">
+                {getRoleText(person)}
               </Text>
             </Box>
           </Box>
@@ -74,7 +85,7 @@ const CreditCarousel = ({ casts, movieId }: props) => {
         <Button
           alignSelf="center"
           as={Link}
-          to={`/movie/${movieId}/credits`}
+          to={`/${type}/${showId}/credits`}
           variant="link"
           fontSize="1.3rem"
           fontWeight="700"
