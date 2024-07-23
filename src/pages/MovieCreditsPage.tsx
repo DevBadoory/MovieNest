@@ -11,7 +11,7 @@ const MovieCreditsPage = () => {
   if (error) throw error;
 
   return (
-    <SimpleGrid columns={2}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing="2rem">
       <GridItem>
         <Heading size="lg">Cast</Heading>
         <Box mt={5}>
@@ -27,11 +27,11 @@ const MovieCreditsPage = () => {
       <GridItem>
         <Heading size="lg">Crew</Heading>
         <Box mt={5}>
-          {data?.crew.map((CrewMember) => (
+          {data?.crew.map((crewMember) => (
             <CreditsCard
-              key={CrewMember.credit_id}
-              person={CrewMember}
-              role={CrewMember.job}
+              key={crewMember.credit_id}
+              person={crewMember}
+              role={crewMember.job}
             />
           ))}
         </Box>
