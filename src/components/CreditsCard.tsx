@@ -1,16 +1,17 @@
 import { HStack, Button, Box, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { getImage } from "../services/img_path";
-import { CastMember, CrewMember } from "../entities/MovieCredits";
+import { MovieCastMember, MovieCrewMember } from "../entities/MovieCredits";
+import { TvCastMember, TvCrewMember } from "../entities/TvShowCredits";
 
 interface Props {
-  person: CastMember | CrewMember;
+  person: MovieCastMember | MovieCrewMember | TvCastMember | TvCrewMember;
   role: string;
 }
 
 const CreditsCard = ({ person, role }: Props) => {
   return (
-    <HStack key={person.id} mb={4} gap={4}>
+    <HStack key={person.id} mb={4} gap={4} alignItems="flex-start">
       <Link to={`/person/${person.id}`}>
         <Image
           objectFit="cover"
@@ -18,25 +19,27 @@ const CreditsCard = ({ person, role }: Props) => {
           height="90px"
           borderRadius="10px"
           src={getImage(person.profile_path)}
+          flexShrink={0}
         />
       </Link>
-      <Box textAlign="left">
-        <Button
-          as={Link}
-          to={`/person/${person.id}`}
-          variant="link"
-          fontSize="1.1rem"
-          fontWeight="700"
-          textAlign="left"
-          height="auto"
-          padding={0}
-          whiteSpace="normal"
-          lineHeight="1.2"
-          justifyContent="left"
-        >
-          {person.name}
-        </Button>
-        <Text>{role}</Text>
+      <Box alignSelf="center" textAlign="left" flex="1" minWidth="0">
+        <Link to={`/person/${person.id}`}>
+          <Button
+            as="div"
+            variant="link"
+            fontSize="1.1rem"
+            fontWeight="700"
+            textAlign="left"
+            height="auto"
+            padding={0}
+            whiteSpace="normal"
+            lineHeight="1.2"
+            justifyContent="left"
+          >
+            {person.name}
+          </Button>
+        </Link>
+        <Text whiteSpace="normal">{role}</Text>
       </Box>
     </HStack>
   );

@@ -1,4 +1,4 @@
-export interface CastMember {
+export interface MovieCastMember {
   adult: boolean;
   cast_id: number;
   character: string;
@@ -13,7 +13,7 @@ export interface CastMember {
   profile_path: string;
 }
 
-export interface CrewMember {
+export interface MovieCrewMember {
   adult: boolean;
   credit_id: string;
   department: string;
@@ -29,8 +29,8 @@ export interface CrewMember {
 
 interface MovieCredits {
   id: number;
-  cast: CastMember[];
-  crew: CrewMember[];
+  cast: MovieCastMember[];
+  crew: MovieCrewMember[];
 }
 
 export default MovieCredits
