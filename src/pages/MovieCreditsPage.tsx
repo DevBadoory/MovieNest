@@ -2,10 +2,15 @@ import { Box, SimpleGrid, Heading, Spinner, GridItem } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import useMovieCredits from "../hooks/useMovieCredits";
 import CreditsCard from "../components/CreditsCard";
+import { useEffect } from "react";
 
 const MovieCreditsPage = () => {
   const { id } = useParams();
   const { data, error, isLoading } = useMovieCredits(String(id));
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
