@@ -67,7 +67,7 @@ const MovieDetailPage = () => {
               <Heading as="h2" size="md" mb={2}>
                 Overview
               </Heading>
-              <Text>{movie?.overview}</Text>
+              <ExpandableText children={movie?.overview} />{" "}
             </Box>
             <Divider />
             <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} width="100%">

@@ -2,7 +2,6 @@ import {
   Box,
   Grid,
   GridItem,
-  HStack,
   Heading,
   Image,
   SimpleGrid,
@@ -11,6 +10,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import ExpandableText from "../components/ExpandableText";
 import KnownForCarousel from "../components/KnownForCarousel";
 import usePersonCredits from "../hooks/usePersonCredits";
 import usePersonDetails from "../hooks/usePersonDetails";
@@ -136,10 +136,10 @@ const PersonDetailPage = () => {
             </Heading>
             {person.biography && (
               <Box>
-                <Heading as="h2" size="md" my={2}>
+                <Heading as="h2" size="md" mb={2}>
                   Biography
                 </Heading>
-                <Text>{person.biography}</Text>
+                <ExpandableText children={person.biography} />
               </Box>
             )}
             {knownFor && (

@@ -20,6 +20,7 @@ import { getImage } from "../services/img_path";
 import { TVShow } from "../entities/TvShows";
 import useTvShowsCredits from "../hooks/useTvShowCredits";
 import CreditCarousel from "../components/CreditsCarousel";
+import ExpandableText from "../components/ExpandableText";
 
 const TVShowDetailPage = () => {
   const { id } = useParams();
@@ -77,7 +78,7 @@ const TVShowDetailPage = () => {
               <Heading as="h2" size="md" mb={2}>
                 Overview
               </Heading>
-              <Text>{tvShow.overview}</Text>
+              <ExpandableText children={tvShow.overview} />
             </Box>
             <Divider />
             <SimpleGrid
