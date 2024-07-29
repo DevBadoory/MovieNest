@@ -41,23 +41,99 @@ const PersonDetailPage = () => {
             borderRadius="md"
             boxShadow="lg"
           />
+          <SimpleGrid mt={6} spacing={6}>
+            <Heading fontSize="1.5rem" as="h2">
+              Personal Info
+            </Heading>
+            {person.known_for_department && (
+              <Box>
+                <Heading as="h3" size="sm" mb={1}>
+                  Known For
+                </Heading>
+                <Text>{person.known_for_department}</Text>
+              </Box>
+            )}
+            {person.birthday && (
+              <Box>
+                <Heading as="h3" size="sm" mb={1}>
+                  Birthday
+                </Heading>
+                <Text> {person.birthday}</Text>
+              </Box>
+            )}
+            {person.place_of_birth && (
+              <Box>
+                <Heading as="h3" size="sm" mb={1}>
+                  Place of Birth
+                </Heading>
+                <Text>in {person.place_of_birth}</Text>
+              </Box>
+            )}
+            {person.deathday && (
+              <Text color="gray.500">Died: {person.deathday}</Text>
+            )}
+            {person.gender && (
+              <Box>
+                <Heading as="h3" size="sm" mb={1}>
+                  Gender
+                </Heading>
+                <Text>{person.gender === 1 ? "Female" : "Male"}</Text>
+              </Box>
+            )}
+            {credits && (
+              <Box>
+                <Heading as="h3" size="sm" mb={1}>
+                  Total Credits
+                </Heading>
+                <Text>{credits.cast.length + credits.crew.length}</Text>
+              </Box>
+            )}
+            {person.also_known_as.length > 0 && (
+              <Box>
+                <Heading as="h3" size="sm" mb={2}>
+                  Also Known As
+                </Heading>
+                <VStack align="start">
+                  {person.also_known_as.map((name, index) => (
+                    <Text key={index}>{name}</Text>
+                  ))}
+                </VStack>
+              </Box>
+            )}
+            <Box>
+              <Heading as="h2" size="md" mb={2}>
+                External Links
+              </Heading>
+              {person.homepage && (
+                <Text
+                  as="a"
+                  href={person.homepage}
+                  color="blue.500"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Official Website
+                </Text>
+              )}
+              {person.imdb_id && (
+                <Text
+                  as="a"
+                  href={`https://www.imdb.com/name/${person.imdb_id}`}
+                  color="blue.500"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  IMDb Profile
+                </Text>
+              )}
+            </Box>
+          </SimpleGrid>
         </GridItem>
         <GridItem>
           <VStack align="start" spacing={4}>
             <Heading as="h1" size="2xl">
               {person.name}
             </Heading>
-            <HStack spacing={4} wrap="wrap">
-              {person.birthday && (
-                <Text color="gray.500">Born: {person.birthday}</Text>
-              )}
-              {person.place_of_birth && (
-                <Text color="gray.500">in {person.place_of_birth}</Text>
-              )}
-            </HStack>
-            {person.deathday && (
-              <Text color="gray.500">Died: {person.deathday}</Text>
-            )}
             {person.biography && (
               <Box>
                 <Heading as="h2" size="md" my={2}>
@@ -73,7 +149,7 @@ const PersonDetailPage = () => {
                 width={{
                   base: "calc(100vw - 33px)",
                   sm: "calc(100vw - 60px)",
-                  md: "calc(100vw - 410px)",
+                  md: "calc(100vw - 420px)",
                 }}
               >
                 <Heading as="h2" size="md">
@@ -82,60 +158,9 @@ const PersonDetailPage = () => {
                 <KnownForCarousel shows={knownFor} />
               </Box>
             )}
-            <Box width="100%">
-              <Heading as="h2" size="md" mb={2}>
-                External Links
-              </Heading>
-              <HStack spacing={4}>
-                {person.homepage && (
-                  <Text
-                    as="a"
-                    href={person.homepage}
-                    color="blue.500"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Official Website
-                  </Text>
-                )}
-                {person.imdb_id && (
-                  <Text
-                    as="a"
-                    href={`https://www.imdb.com/name/${person.imdb_id}`}
-                    color="blue.500"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    IMDb Profile
-                  </Text>
-                )}
-              </HStack>
-            </Box>
           </VStack>
         </GridItem>
       </Grid>
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} width="100%">
-        {person.also_known_as.length > 0 && (
-          <Box>
-            <Heading as="h3" size="sm" mb={2}>
-              Also Known As
-            </Heading>
-            <VStack align="start">
-              {person.also_known_as.map((name, index) => (
-                <Text key={index}>{name}</Text>
-              ))}
-            </VStack>
-          </Box>
-        )}
-
-        <Text fontWeight="bold">Known For: {person.known_for_department}</Text>
-        <Box>
-          <Heading as="h3" size="sm" mb={2}>
-            Popularity
-          </Heading>
-          <Text>{person.popularity.toFixed(2)}</Text>
-        </Box>
-      </SimpleGrid>
     </Box>
   );
 };
