@@ -1,10 +1,10 @@
 import { Box, Button, Image, SimpleGrid, useColorMode } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { PersonCastMember } from "../entities/PersonCredits";
+import { PersonCastMember, PersonCrewMember } from "../entities/PersonCredits";
 import { getImage } from "../services/img_path";
 
 interface Props {
-  shows: PersonCastMember[];
+  shows: (PersonCastMember | PersonCrewMember)[];
 }
 
 const KnownForCarousel = ({ shows }: Props) => {
@@ -37,6 +37,7 @@ const KnownForCarousel = ({ shows }: Props) => {
           <Box mt={5} borderRadius="10px" key={show.id}>
             <Link to={`/${show.media_type}/${show.id}`}>
               <Image
+                alt={show.original_title || show.original_name}
                 height="220px"
                 width="100%"
                 objectFit="cover"
@@ -58,7 +59,7 @@ const KnownForCarousel = ({ shows }: Props) => {
                 lineHeight="1.2"
                 color={color}
               >
-                {show.title}
+                {show.title || show.original_name}
               </Button>
             </Box>
           </Box>

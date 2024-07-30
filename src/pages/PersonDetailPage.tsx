@@ -21,9 +21,14 @@ const PersonDetailPage = () => {
   const { data: person, error, isLoading } = usePersonDetails(String(id));
   const { data: credits } = usePersonCredits(String(id));
 
-  const knownFor = credits?.cast
-    .sort((a, b) => b.vote_count - a.vote_count)
-    .slice(0, 9);
+  const KnownForRole =
+    credits?.cast.length && credits?.cast?.length > 8
+      ? credits?.cast
+      : credits?.crew;
+
+  const knownFor = KnownForRole?.sort(
+    (a, b) => b.vote_count - a.vote_count
+  ).slice(0, 9);
 
   if (isLoading) return <Spinner />;
   if (error) throw error;
