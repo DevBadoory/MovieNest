@@ -3,6 +3,7 @@ import {
   Grid,
   GridItem,
   Heading,
+  Hide,
   Image,
   SimpleGrid,
   Spinner,
@@ -36,9 +37,11 @@ const PersonDetailPage = () => {
 
   return (
     <Box>
-      <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={10}>
+      <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={6}>
         <GridItem>
           <Image
+            margin="auto"
+            alt={person.name}
             height="450px"
             width="300px"
             objectFit="cover"
@@ -46,6 +49,11 @@ const PersonDetailPage = () => {
             borderRadius="md"
             boxShadow="lg"
           />
+          <Hide above="md">
+            <Heading as="h1" size="2xl" margin="auto" textAlign="center" mt={2}>
+              {person.name}
+            </Heading>
+          </Hide>
           <SimpleGrid mt={6} spacing={6}>
             <Heading fontSize="1.5rem" as="h2">
               Personal Info
@@ -93,6 +101,7 @@ const PersonDetailPage = () => {
                 <Text>{credits.cast.length + credits.crew.length}</Text>
               </Box>
             )}
+            <Hide below="md">
             {person.also_known_as.length > 0 && (
               <Box>
                 <Heading as="h3" size="sm" mb={2}>
@@ -105,6 +114,7 @@ const PersonDetailPage = () => {
                 </VStack>
               </Box>
             )}
+            </Hide>
             <Box>
               <Heading as="h2" size="md" mb={2}>
                 External Links
@@ -135,10 +145,12 @@ const PersonDetailPage = () => {
           </SimpleGrid>
         </GridItem>
         <GridItem>
-          <VStack align="start" spacing={4}>
-            <Heading as="h1" size="2xl">
+          <Hide below="md">
+            <Heading mb={5} as="h1" size="2xl">
               {person.name}
             </Heading>
+          </Hide>
+
             {person.biography && (
               <Box>
                 <Heading as="h2" size="md" mb={2}>
