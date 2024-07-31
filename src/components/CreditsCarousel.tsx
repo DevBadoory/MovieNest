@@ -1,4 +1,11 @@
-import { Box, Button, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Image,
+  SimpleGrid,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MovieCastMember } from "../entities/MovieCredits";
@@ -22,9 +29,13 @@ const CreditCarousel = ({ casts, showId, type }: Props) => {
     }
   };
 
+  const { colorMode } = useColorMode();
+  const color = colorMode === "light" ? "#000" : "#fff";
+
   return (
     <Box mb={10}>
       <SimpleGrid
+        pb="1rem"
         gridAutoFlow="column"
         gridAutoColumns={{
           base: "150px",
@@ -48,7 +59,8 @@ const CreditCarousel = ({ casts, showId, type }: Props) => {
         {casts?.map((person) => (
           <Box
             mt={9}
-            backgroundColor="#202020"
+            backgroundColor={colorMode === "light" ? "#fff" : "#202020"}
+            boxShadow="0 2px 8px rgba(0, 0, 0, .1)"
             borderRadius="10px"
             key={person.id}
           >
@@ -73,10 +85,16 @@ const CreditCarousel = ({ casts, showId, type }: Props) => {
                 padding={0}
                 whiteSpace="normal"
                 lineHeight="1.2"
+                color={color}
               >
                 {person.name}
               </Button>
-              <Text noOfLines={2} fontSize="1rem" fontWeight="200">
+              <Text
+                noOfLines={2}
+                fontSize="1rem"
+                fontWeight="200"
+                color={color}
+              >
                 {getRoleText(person)}
               </Text>
             </Box>
