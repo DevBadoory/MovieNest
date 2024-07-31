@@ -5,19 +5,20 @@ interface Props {
 }
 
 const MetaCriticDetailPage = ({ score }: Props) => {
-  const metacritic = Math.round(score * 10);
+  const metacritic = parseFloat(score.toFixed(1)); // Ensures the value has one decimal point
 
   return (
     <Box display="inline-block">
       <CircularProgress
+        max={10}
         value={metacritic}
-        color={metacritic < 65 ? "yellow.400" : "green.400"}
+        color={metacritic < 6.5 ? "yellow.400" : "green.400"}
         trackColor="#081c22"
         size="50px"
         thickness="8px"
       >
-        <CircularProgressLabel fontSize="sm" fontWeight="bold">
-          {metacritic === 0 ? "NR" : metacritic + "%"}
+        <CircularProgressLabel fontSize="1rem" fontWeight="bold">
+          {metacritic === 0 ? "NR" : metacritic}
         </CircularProgressLabel>
       </CircularProgress>
     </Box>
