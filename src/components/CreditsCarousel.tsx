@@ -76,7 +76,7 @@ const CreditCarousel = ({ casts, showId, type }: Props) => {
               >
                 {person.name}
               </Button>
-              <Text fontSize="1rem" fontWeight="200">
+              <Text noOfLines={2} fontSize="1rem" fontWeight="200">
                 {getRoleText(person)}
               </Text>
             </Box>
