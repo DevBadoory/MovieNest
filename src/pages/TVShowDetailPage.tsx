@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Divider,
   Flex,
@@ -11,13 +12,15 @@ import {
   Spinner,
   Text,
   VStack,
-  Badge,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import ExpandableText from "../components/ExpandableText";
 import MetaCriticDetailPage from "../components/MetaCriticDetailPage";
+import { TVShow } from "../entities/TvShows";
 import useTVShowDetails from "../hooks/useTVShowDetails";
 import useTvShowsCredits from "../hooks/useTvShowCredits";
 import { getImageW200, getImageW300, getImageW500 } from "../services/img_path";
+import CreditCarousel from "../components/CreditsCarousel";
 
 const TVShowDetailPage = () => {
   const { id } = useParams();
@@ -39,7 +42,7 @@ const TVShowDetailPage = () => {
             height="450px"
             width="300px"
             objectFit="cover"
-            src={getImage(tvShow.poster_path)}
+            src={getImageW500(tvShow.poster_path)}
             borderRadius="md"
             boxShadow="lg"
           />
@@ -131,7 +134,7 @@ const TVShowDetailPage = () => {
                 {tvShow.created_by?.map((creator) => (
                   <Box key={creator.id} display="flex" alignItems="center">
                     <Image
-                      src={getImage(creator.profile_path)}
+                      src={getImageW300(creator.profile_path)}
                       alt={creator.name}
                       height="50px"
                       width="50px"
@@ -153,7 +156,7 @@ const TVShowDetailPage = () => {
                 {tvShow.networks?.map((network) => (
                   <Box key={network.id} display="flex" alignItems="center">
                     <Image
-                      src={getImage(network.logo_path)}
+                      src={getImageW200(network.logo_path)}
                       alt={network.name}
                       height="50px"
                       width="50px"

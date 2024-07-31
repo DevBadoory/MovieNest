@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import CreditCarousel from "../components/CreditsCarousel";
+import ExpandableText from "../components/ExpandableText";
 import MetaCriticDetailPage from "../components/MetaCriticDetailPage"; // Import the new component
 import useMovieCredits from "../hooks/useMovieCredits";
 import useMovieDetails from "../hooks/useMovieDetails";
@@ -37,7 +38,7 @@ const MovieDetailPage = () => {
             height="450px"
             width="300px"
             objectFit="cover"
-            src={getImage(movie?.poster_path || "")}
+            src={getImageW500(movie?.poster_path || "")}
             borderRadius="md"
             boxShadow="lg"
           />
@@ -105,7 +106,7 @@ const MovieDetailPage = () => {
                 {movie?.production_companies?.map((company) => (
                   <Box key={company.id} display="flex" alignItems="center">
                     <Image
-                      src={getImage(company.logo_path || "")}
+                      src={getImageW200(company.logo_path || "")}
                       alt={company.name}
                       height="50px"
                       width="50px"
