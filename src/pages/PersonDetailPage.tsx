@@ -11,6 +11,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import CreditsList from "../components/CreditsList";
 import ExpandableText from "../components/ExpandableText";
 import KnownForCarousel from "../components/KnownForCarousel";
 import usePersonCredits from "../hooks/usePersonCredits";
@@ -102,18 +103,18 @@ const PersonDetailPage = () => {
               </Box>
             )}
             <Hide below="md">
-            {person.also_known_as.length > 0 && (
-              <Box>
-                <Heading as="h3" size="sm" mb={2}>
-                  Also Known As
-                </Heading>
-                <VStack align="start">
-                  {person.also_known_as.map((name, index) => (
-                    <Text key={index}>{name}</Text>
-                  ))}
-                </VStack>
-              </Box>
-            )}
+              {person.also_known_as.length > 0 && (
+                <Box>
+                  <Heading as="h3" size="sm" mb={2}>
+                    Also Known As
+                  </Heading>
+                  <VStack align="start">
+                    {person.also_known_as.map((name, index) => (
+                      <Text key={index}>{name}</Text>
+                    ))}
+                  </VStack>
+                </Box>
+              )}
             </Hide>
             <Box>
               <Heading as="h2" size="md" mb={2}>
@@ -151,31 +152,31 @@ const PersonDetailPage = () => {
             </Heading>
           </Hide>
 
-            {person.biography && (
-              <Box>
-                <Heading as="h2" size="md" mb={2}>
-                  Biography
-                </Heading>
-                <ExpandableText children={person.biography} />
-              </Box>
-            )}
-            {knownFor && (
-              <Box
-                mt={6}
-                maxWidth="1094px"
-                width={{
-                  base: "calc(100vw - 33px)",
-                  sm: "calc(100vw - 60px)",
-                  md: "calc(100vw - 420px)",
-                }}
-              >
-                <Heading as="h2" size="md">
-                  Known For
-                </Heading>
-                <KnownForCarousel shows={knownFor} />
-              </Box>
-            )}
-          </VStack>
+          {person.biography && (
+            <Box>
+              <Heading as="h2" size="md" mb={2}>
+                Biography
+              </Heading>
+              <ExpandableText children={person.biography} />
+            </Box>
+          )}
+          {knownFor && (
+            <Box
+              mt={6}
+              maxWidth="1094px"
+              width={{
+                base: "calc(100vw - 33px)",
+                sm: "calc(100vw - 60px)",
+                md: "calc(100vw - 420px)",
+              }}
+            >
+              <Heading as="h2" size="md">
+                Known For
+              </Heading>
+              <KnownForCarousel shows={knownFor} />
+            </Box>
+          )}
+          {credits && <CreditsList credits={credits} />}
         </GridItem>
       </Grid>
     </Box>
