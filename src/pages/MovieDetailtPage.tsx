@@ -32,9 +32,10 @@ const MovieDetailPage = () => {
 
   return (
     <Box>
-      <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={10}>
+      <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={7}>
         <GridItem>
           <Image
+            margin="auto"
             height="450px"
             width="300px"
             objectFit="cover"
@@ -45,10 +46,14 @@ const MovieDetailPage = () => {
         </GridItem>
         <GridItem>
           <VStack align="start" spacing={4}>
-            <Heading as="h1" size="2xl">
+            <Heading as="h1" size="2xl" margin={{ base: "auto", md: "auto" }}>
               {movie?.title}
             </Heading>
-            <HStack spacing={4} wrap="wrap">
+            <HStack
+              spacing={4}
+              wrap="wrap"
+              margin={{ base: "auto", md: "auto" }}
+            >
               <Text color="gray.500">{movie?.release_date?.split("-")[0]}</Text>
               <Text color="gray.500">
                 {movie?.genres?.map((genre) => genre.name).join(", ")}
@@ -98,22 +103,29 @@ const MovieDetailPage = () => {
               </Box>
             </SimpleGrid>
             <Divider />
-            <Box width="100%">
+            <Box width="100%" boxShadow="0 2px 8px rgba(0, 0, 0, .1)">
               <Heading as="h2" size="md" mb={2}>
                 Production Companies
               </Heading>
-              <SimpleGrid mt={5} columns={{ base: 2, md: 3 }} spacing={4}>
+              <SimpleGrid
+                mt={5}
+                columns={{ base: 1, sm: 2, lg: 3 }}
+                spacing={4}
+              >
                 {movie?.production_companies?.map((company) => (
                   <Box key={company.id} display="flex" alignItems="center">
                     <Image
                       src={getImageW200(company.logo_path || "")}
                       alt={company.name}
-                      height="50px"
-                      width="50px"
+                      height="auto"
+                      width="4rem"
+                      backgroundColor="#fff"
                       objectFit="contain"
                       mr={2}
                     />
-                    <Text fontSize="sm">{company.name}</Text>
+                    <Text fontSize="sm" lineHeight="normal">
+                      {company.name}
+                    </Text>
                   </Box>
                 ))}
               </SimpleGrid>

@@ -13,8 +13,8 @@ const Carousel = ({ title, children }: props) => {
       <SimpleGrid
         gridAutoFlow="column"
         gridAutoColumns={{
-          base: "65%",
-          sm: "45%",
+          base: "50%",
+          sm: "40%",
           md: "30%",
           lg: "21%",
           xl: "14%",
