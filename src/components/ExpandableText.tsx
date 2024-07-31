@@ -1,5 +1,5 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
-import { ReactNode, useState } from "react";
+import { Box, Button, Text } from "@chakra-ui/react";
+import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 interface props {

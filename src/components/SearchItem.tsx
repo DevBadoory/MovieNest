@@ -6,9 +6,9 @@ import {
   Text,
   useColorMode,
 } from "@chakra-ui/react";
-import Search from "../entities/Search";
-import { getImage } from "../services/img_path";
 import { Link } from "react-router-dom";
+import Search from "../entities/Search";
+import { getImageW300 } from "../services/img_path";
 
 interface Props {
   item: Search;
@@ -33,7 +33,7 @@ const SearchItem = ({ item, selectedCategory }: Props) => {
           minWidth="94px"
           objectFit="cover"
           borderRadius="4px"
-          src={getImage(imagePath)}
+          src={getImageW300(imagePath)}
         />
       </Link>
       <Box ml={2}>

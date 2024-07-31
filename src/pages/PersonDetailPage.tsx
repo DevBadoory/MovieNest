@@ -16,7 +16,7 @@ import ExpandableText from "../components/ExpandableText";
 import KnownForCarousel from "../components/KnownForCarousel";
 import usePersonCredits from "../hooks/usePersonCredits";
 import usePersonDetails from "../hooks/usePersonDetails";
-import { getImage } from "../services/img_path";
+import { getImageW500 } from "../services/img_path";
 
 const PersonDetailPage = () => {
   const { id } = useParams();
@@ -46,7 +46,7 @@ const PersonDetailPage = () => {
             height="450px"
             width="300px"
             objectFit="cover"
-            src={getImage(person.profile_path || "")}
+            src={getImageW500(person.profile_path || "")}
             borderRadius="md"
             boxShadow="lg"
           />

@@ -17,7 +17,7 @@ import CreditCarousel from "../components/CreditsCarousel";
 import MetaCriticDetailPage from "../components/MetaCriticDetailPage"; // Import the new component
 import useMovieCredits from "../hooks/useMovieCredits";
 import useMovieDetails from "../hooks/useMovieDetails";
-import { getImage } from "../services/img_path";
+import { getImageW200, getImageW500 } from "../services/img_path";
 
 const MovieDetailPage = () => {
   const { id } = useParams();

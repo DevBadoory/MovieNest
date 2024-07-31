@@ -11,11 +11,11 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { Link } from "react-router-dom";
 import PersonCredits from "../entities/PersonCredits";
-import { getImage } from "../services/img_path";
+import { getImageW200 } from "../services/img_path";
 
 interface Props {
   credits: PersonCredits;
@@ -42,10 +42,14 @@ const CreditsList = ({ credits }: Props) => {
       ? filteredMedia.slice(0, listLength)
       : filteredMedia;
 
-  const handleSeeAllClick = () => {
+  useEffect(() => {
+    setShowSeeAll(filteredMedia.length > 20);
+  }, [filteredMedia.length]);
+
+  const handleSeeAllClick = useCallback(() => {
     setListLength(filteredMedia.length);
     setShowSeeAll(false);
-  };
+  }, [filteredMedia.length]);
 
   return (
     <SimpleGrid spacing={2} mb={5}>
@@ -100,7 +104,7 @@ const CreditsList = ({ credits }: Props) => {
                 height="90px"
                 borderRadius="10px"
                 objectFit="cover"
-                src={getImage(item.poster_path || "")}
+                src={getImageW200(item.poster_path || "")}
               />
               <Box>
                 <Heading fontSize="lg">

@@ -1,7 +1,7 @@
 import { Box, Button, Image, SimpleGrid, useColorMode } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { PersonCastMember, PersonCrewMember } from "../entities/PersonCredits";
-import { getImage } from "../services/img_path";
+import { getImageW300 } from "../services/img_path";
 
 interface Props {
   shows: (PersonCastMember | PersonCrewMember)[];
@@ -42,7 +42,7 @@ const KnownForCarousel = ({ shows }: Props) => {
                 width="100%"
                 objectFit="cover"
                 borderTopRadius="10px"
-                src={getImage(show.poster_path || "")}
+                src={getImageW300(show.poster_path || "")}
               />
             </Link>
             <Box py={1} textAlign="center">

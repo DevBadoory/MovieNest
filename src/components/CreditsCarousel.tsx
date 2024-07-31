@@ -1,9 +1,9 @@
 import { Box, Button, Image, SimpleGrid, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { MovieCastMember } from "../entities/MovieCredits";
-import { getImage } from "../services/img_path";
 import { TvCastMember } from "../entities/TvShowCredits";
+import { getImageW300 } from "../services/img_path";
 
 interface Props {
   casts: (MovieCastMember | TvCastMember)[];
@@ -58,7 +58,7 @@ const CreditCarousel = ({ casts, showId, type }: Props) => {
                 width="100%"
                 objectFit="cover"
                 borderTopRadius="10px"
-                src={getImage(person.profile_path)}
+                src={getImageW300(person.profile_path)}
               />
             </Link>
             <Box py={5} px={4} textAlign="center">

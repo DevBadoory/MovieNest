@@ -1,8 +1,8 @@
 import { Box, Heading, Image, Text } from "@chakra-ui/react";
-import Trends from "../entities/Trends";
-import { getImage } from "../services/img_path";
-import MetaCritic from "./MetaCritic";
 import { Link } from "react-router-dom";
+import Trends from "../entities/Trends";
+import { getImageW500 } from "../services/img_path";
+import MetaCritic from "./MetaCritic";
 
 interface props {
   popular: Trends;
@@ -16,7 +16,7 @@ const PopularCard = ({ popular }: props) => {
         <Image
           borderRadius="10px"
           overflow="hidden"
-          src={getImage(popular.poster_path)}
+          src={getImageW500(popular.poster_path)}
           alt={altText}
         />
       </Link>

@@ -16,11 +16,8 @@ import {
 import { useParams } from "react-router-dom";
 import MetaCriticDetailPage from "../components/MetaCriticDetailPage";
 import useTVShowDetails from "../hooks/useTVShowDetails";
-import { getImage } from "../services/img_path";
-import { TVShow } from "../entities/TvShows";
 import useTvShowsCredits from "../hooks/useTvShowCredits";
-import CreditCarousel from "../components/CreditsCarousel";
-import ExpandableText from "../components/ExpandableText";
+import { getImageW200, getImageW300, getImageW500 } from "../services/img_path";
 
 const TVShowDetailPage = () => {
   const { id } = useParams();

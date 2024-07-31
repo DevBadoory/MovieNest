@@ -1,8 +1,8 @@
-import { HStack, Button, Box, Image, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { getImage } from "../services/img_path";
 import { MovieCastMember, MovieCrewMember } from "../entities/MovieCredits";
 import { TvCastMember, TvCrewMember } from "../entities/TvShowCredits";
+import { getImageW200 } from "../services/img_path";
 
 interface Props {
   person: MovieCastMember | MovieCrewMember | TvCastMember | TvCrewMember;
@@ -18,7 +18,7 @@ const CreditsCard = ({ person, role }: Props) => {
           width="80px"
           height="90px"
           borderRadius="10px"
-          src={getImage(person.profile_path)}
+          src={getImageW200(person.profile_path)}
           flexShrink={0}
         />
       </Link>
