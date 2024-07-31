@@ -11,6 +11,7 @@ import {
   Spinner,
   Text,
   VStack,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import CreditCarousel from "../components/CreditsCarousel";
@@ -32,9 +33,10 @@ const MovieDetailPage = () => {
 
   return (
     <Box>
-      <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={10}>
+      <Grid templateColumns={{ base: "1fr", md: "300px 1fr" }} gap={7}>
         <GridItem>
           <Image
+            margin="auto"
             height="450px"
             width="300px"
             objectFit="cover"
@@ -45,10 +47,14 @@ const MovieDetailPage = () => {
         </GridItem>
         <GridItem>
           <VStack align="start" spacing={4}>
-            <Heading as="h1" size="2xl">
+            <Heading as="h1" size="2xl" margin={{ base: "auto", md: "auto" }}>
               {movie?.title}
             </Heading>
-            <HStack spacing={4} wrap="wrap">
+            <HStack
+              spacing={4}
+              wrap="wrap"
+              margin={{ base: "auto", md: "auto" }}
+            >
               <Text color="gray.500">{movie?.release_date?.split("-")[0]}</Text>
               <Text color="gray.500">
                 {movie?.genres?.map((genre) => genre.name).join(", ")}
