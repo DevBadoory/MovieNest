@@ -50,14 +50,10 @@ const TVShowDetailPage = () => {
         </GridItem>
         <GridItem>
           <VStack align="start" spacing={4}>
-            <Heading as="h1" size="2xl" margin={{ base: "auto", md: "auto" }}>
+            <Heading as="h1" size="2xl" margin={{ base: "auto", md: "0" }}>
               {tvShow.name}
             </Heading>
-            <HStack
-              spacing={4}
-              wrap="wrap"
-              margin={{ base: "auto", md: "auto" }}
-            >
+            <HStack spacing={4} wrap="wrap" margin={{ base: "auto", md: "0" }}>
               <Text color="gray.500">
                 {tvShow.first_air_date?.split("-")[0]}
               </Text>

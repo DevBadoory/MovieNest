@@ -46,14 +46,10 @@ const MovieDetailPage = () => {
         </GridItem>
         <GridItem>
           <VStack align="start" spacing={4}>
-            <Heading as="h1" size="2xl" margin={{ base: "auto", md: "auto" }}>
+            <Heading as="h1" size="2xl" margin={{ base: "auto", md: "0" }}>
               {movie?.title}
             </Heading>
-            <HStack
-              spacing={4}
-              wrap="wrap"
-              margin={{ base: "auto", md: "auto" }}
-            >
+            <HStack spacing={4} wrap="wrap" margin={{ base: "auto", md: "0" }}>
               <Text color="gray.500">{movie?.release_date?.split("-")[0]}</Text>
               <Text color="gray.500">
                 {movie?.genres?.map((genre) => genre.name).join(", ")}
