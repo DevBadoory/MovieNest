@@ -12,7 +12,7 @@ const MetaCritic = ({ children }: Props) => {
         max={10}
         fontWeight="bold"
         fontSize="3.5rem"
-        value={metacritic * 10} // Scales the value to fit within the CircularProgress range
+        value={metacritic} // Scales the value to fit within the CircularProgress range
         color={metacritic < 6.5 ? "yellow" : "green"}
         backgroundColor="#081c22"
         borderRadius="50%"
