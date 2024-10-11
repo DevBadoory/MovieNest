@@ -17,6 +17,7 @@ import { MovieCrewMember } from "../entities/MovieCredits";
 import { getImageW500 } from "../services/img_path";
 import ExpandableText from "./ExpandableText";
 import MetaCriticDetailPage from "./MetaCriticDetailPage";
+import WatchLaterButton from "./WatchLaterButton";
 
 interface Props {
   movie: Movie;
@@ -67,14 +68,24 @@ const MovieInfo = ({ movie, crew }: Props) => {
       </GridItem>
       <GridItem>
         <VStack align="start" spacing={4}>
-          <Heading
-            as="h1"
-            size={headingSize}
-            margin={{ base: "auto", md: "0" }}
-            color={color}
+          <Flex
+            flexDirection={{ base: "column-reverse", md: "row" }}
+            w="full"
+            alignItems="center"
+            gap={7}
+            justifyContent="space-between"
           >
-            {movie.title}
-          </Heading>
+            <Heading
+              textAlign="left"
+              as="h1"
+              size={headingSize}
+              margin={{ base: "auto", md: "0" }}
+              color={color}
+            >
+              {movie.title}
+            </Heading>
+            <WatchLaterButton />
+          </Flex>
           <HStack spacing={3} wrap="wrap" margin={{ base: "auto", md: "0" }}>
             <Text color={color} fontSize={fontSize}>
               {movie.release_date.split("-")[0]}
