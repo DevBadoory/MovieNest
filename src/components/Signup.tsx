@@ -12,7 +12,7 @@ const SignUp = ({ signing }: props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { signupMutation } = useAuth();
+  const { signUpMutation } = useAuth();
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ const SignUp = ({ signing }: props) => {
       return;
     }
 
-    signupMutation.mutate({ email, password });
+    signUpMutation.mutate({ email, password });
     setError("");
 
     setUsername("");
