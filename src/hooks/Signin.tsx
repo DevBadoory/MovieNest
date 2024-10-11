@@ -1,5 +1,6 @@
-import { Box, Button, Heading, Input, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, Input, Text, VStack } from "@chakra-ui/react";
 import { FormEvent, useState } from "react";
+import { useAuth } from "./useAuth";
 
 interface props {
   signing: () => void;
@@ -8,9 +9,19 @@ interface props {
 const Signin = ({ signing }: props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { signInMutation } = useAuth();
 
   const handleSignIn = (e: FormEvent) => {
     e.preventDefault();
+
+    signInMutation.mutate(
+      { email, password },
+      {
+        onError: () =>
+          setError("Incorrect email or password. Please check your details."),
+      }
+    );
   };
   return (
     <Box
@@ -41,7 +52,18 @@ const Signin = ({ signing }: props) => {
           isRequired
         />
 
-        <Button type="submit" colorScheme="blue" width="full">
+        {error && (
+          <Text color="red.500" fontSize="sm">
+            {error}
+          </Text>
+        )}
+
+        <Button
+          type="submit"
+          colorScheme="blue"
+          width="full"
+          isDisabled={password.length < 6 || email.length < 1}
+        >
           Sign In
         </Button>
       </VStack>
