@@ -12,7 +12,7 @@ const SignUp = ({ signing }: props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { signUpMutation, userId } = useAuth();
+  const { signUpMutation, usernames } = useAuth();
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +31,21 @@ const SignUp = ({ signing }: props) => {
 
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
+      return;
+    }
+
+    if (username.length < 4) {
+      setError("Username should be more than 3 characters.");
+      return;
+    }
+
+    if (usernames?.find((u) => u.username === username)) {
+      setError("Username is used.");
+      return;
+    }
+
+    if (usernames?.find((u) => u.email === email)) {
+      setError("Email is used.");
       return;
     }
 
@@ -92,7 +107,12 @@ const SignUp = ({ signing }: props) => {
           </Text>
         )}
 
-        <Button type="submit" colorScheme="blue" width="full">
+        <Button
+          type="submit"
+          colorScheme="blue"
+          width="full"
+          isDisabled={signUpMutation.isPending}
+        >
           Sign Up
         </Button>
       </VStack>

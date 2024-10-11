@@ -10,11 +10,17 @@ const Signin = ({ signing }: props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { signInMutation } = useAuth();
+  const { signInMutation, usernames } = useAuth();
+
+  console.log(usernames?.find((u) => u.email == email));
 
   const handleSignIn = (e: FormEvent) => {
     e.preventDefault();
 
+    if (!usernames?.find((u) => u.email == email)) {
+      setError("email address is not found");
+      return;
+    }
     signInMutation.mutate(
       { email, password },
       {
