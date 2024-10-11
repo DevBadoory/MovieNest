@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { getUsernamesAuth, signInAuth, signOutAuth, signUpAuth, userIdAuth } from "../services/auth";
+import { deleteUserAuth, getUsernamesAuth, signInAuth, signOutAuth, signUpAuth, userIdAuth } from "../services/auth";
 
 
 export const useAuth = () => {
@@ -16,7 +16,10 @@ export const useAuth = () => {
         mutationFn: ({username , email, password}: {username: string; email: string; password: string}) => {
             return signUpAuth(username, email, password)
         },
-        onSuccess: () => queryClient.invalidateQueries({queryKey:['userId']})
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey:['userId']})
+            queryClient.invalidateQueries({queryKey:['username']})
+        }
     })
 
     const signInMutation = useMutation({
@@ -32,6 +35,11 @@ export const useAuth = () => {
         onSuccess: () => queryClient.invalidateQueries({queryKey:['userId']})
     })
 
+    const deleteUserMutation = useMutation({
+        mutationFn: deleteUserAuth,
+        onSuccess: () => queryClient.invalidateQueries({queryKey:['userId']})
+    })
+
     const usernamesQuery = useQuery({
         queryKey: ['username'],
         queryFn: getUsernamesAuth
@@ -42,6 +50,7 @@ export const useAuth = () => {
         signUpMutation,
         signInMutation,
         signOutMutation,
+        deleteUserMutation,
         userId: userIdQuery.data,
         usernames: usernamesQuery.data,
         usernamesIsLoading: usernamesQuery.isLoading

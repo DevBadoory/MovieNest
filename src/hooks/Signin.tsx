@@ -12,8 +12,6 @@ const Signin = ({ signing }: props) => {
   const [error, setError] = useState("");
   const { signInMutation, usernames } = useAuth();
 
-  console.log(usernames?.find((u) => u.email == email));
-
   const handleSignIn = (e: FormEvent) => {
     e.preventDefault();
 

@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
-import { auth, db } from "../config/Firebase"
-import { collection, doc, getDocs, setDoc } from "firebase/firestore"
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { collection, deleteDoc, doc, getDocs, setDoc } from "firebase/firestore";
+import { auth, db } from "../config/Firebase";
 
 export interface Username{
     username: string;
@@ -37,6 +37,16 @@ export const signInAuth = async(email: string, password: string) => {
 
 export const signOutAuth = async() => {
     await signOut(auth)
+}
+
+export const deleteUserAuth = async() => {
+    const user = auth.currentUser;
+
+    if (user) {
+        const userId = user.uid;
+        await deleteDoc(doc(db, 'users', userId));
+        await user.delete();
+    }
 }
 
 const usernamesCollectionRef = collection(db, 'users')

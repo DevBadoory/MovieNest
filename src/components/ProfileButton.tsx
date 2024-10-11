@@ -15,7 +15,13 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const ProfileButton = () => {
-  const { signOutMutation, usernames, userId, usernamesIsLoading } = useAuth();
+  const {
+    signOutMutation,
+    deleteUserMutation,
+    usernames,
+    userId,
+    usernamesIsLoading,
+  } = useAuth();
 
   const user = usernames?.find((u) => u.email == auth.currentUser?.email);
 
@@ -39,6 +45,9 @@ const ProfileButton = () => {
       </MenuButton>
       <MenuList zIndex="10000">
         <MenuItem onClick={() => signOutMutation.mutate()}>Sign out</MenuItem>
+        <MenuItem color="red.500" onClick={() => deleteUserMutation.mutate()}>
+          Delete Account
+        </MenuItem>
       </MenuList>
     </Menu>
   );
