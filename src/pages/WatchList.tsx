@@ -2,6 +2,7 @@ import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import WatchLaterButton from "../components/WatchLaterButton";
 import { useAuth } from "../hooks/useAuth";
 import { getImageW500 } from "../services/img_path";
+import { Link } from "react-router-dom";
 
 const WatchList = () => {
   const { watchLater, watchLaterIsLoading } = useAuth();
@@ -14,30 +15,32 @@ const WatchList = () => {
               return a.sort - b.sort;
             })
             .map((w) => (
-              <Flex justifyContent="space-between" mb={5} key={w.id}>
-                <Flex>
-                  <Image
-                    height="141px"
-                    maxW="94px"
-                    src={getImageW500(w.poster || "")}
+              <Link to={`/${w.type}/${w.id}`}>
+                <Flex justifyContent="space-between" mb={5} key={w.id}>
+                  <Flex>
+                    <Image
+                      height="141px"
+                      maxW="94px"
+                      src={getImageW500(w.poster || "")}
+                    />
+                    <Box ml={4}>
+                      <Heading fontSize="lg">{w.title}</Heading>
+                      <Text color="#6b6a6a">{w.date}</Text>
+                      <Text noOfLines={2} fontSize="sm" mt={5}>
+                        {w.overview}
+                      </Text>
+                    </Box>
+                  </Flex>
+                  <WatchLaterButton
+                    title={w.title}
+                    overview={w.overview}
+                    poster={w.poster}
+                    date={w.date}
+                    id={w.id}
+                    type={w.type}
                   />
-                  <Box ml={4}>
-                    <Heading fontSize="lg">{w.title}</Heading>
-                    <Text color="#6b6a6a">{w.date}</Text>
-                    <Text noOfLines={2} fontSize="sm" mt={5}>
-                      {w.overview}
-                    </Text>
-                  </Box>
                 </Flex>
-                <WatchLaterButton
-                  title={w.title}
-                  overview={w.overview}
-                  poster={w.poster}
-                  date={w.date}
-                  id={w.id}
-                  type={w.type}
-                />
-              </Flex>
+              </Link>
             ))
         : ""}
     </Box>
