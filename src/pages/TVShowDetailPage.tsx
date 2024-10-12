@@ -21,6 +21,7 @@ import useTVShowDetails from "../hooks/useTVShowDetails";
 import useTvShowsCredits from "../hooks/useTvShowCredits";
 import { getImageW200, getImageW300, getImageW500 } from "../services/img_path";
 import CreditCarousel from "../components/CreditsCarousel";
+import WatchLaterButton from "../components/WatchLaterButton";
 
 const TVShowDetailPage = () => {
   const { id } = useParams();
@@ -50,9 +51,23 @@ const TVShowDetailPage = () => {
         </GridItem>
         <GridItem>
           <VStack align="start" spacing={4}>
-            <Heading as="h1" size="2xl" margin={{ base: "auto", md: "0" }}>
-              {tvShow.name}
-            </Heading>
+            <Flex
+              justifyContent="space-between"
+              alignItems="center"
+              width="100%"
+            >
+              <Heading as="h1" size="2xl" margin={{ base: "auto", md: "0" }}>
+                {tvShow.name}
+              </Heading>
+              <WatchLaterButton
+                title={tvShow.name}
+                date={tvShow.first_air_date}
+                overview={tvShow.overview}
+                poster={tvShow.poster_path}
+                id={tvShow.id}
+                type={"tv"}
+              />
+            </Flex>
             <HStack spacing={4} wrap="wrap" margin={{ base: "auto", md: "0" }}>
               <Text color="gray.500">
                 {tvShow.first_air_date?.split("-")[0]}
