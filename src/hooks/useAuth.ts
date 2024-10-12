@@ -1,5 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { addWatchLaterAuth, deleteUserAuth, getUsernamesAuth, getWatchLaterAuth, signInAuth, signOutAuth, signUpAuth, userIdAuth } from "../services/auth";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { WatchLater, addWatchLaterAuth, deleteUserAuth, deleteWatchLaterItemAuth, getUsernamesAuth, getWatchLaterAuth, signInAuth, signOutAuth, signUpAuth, userIdAuth } from "../services/auth";
 
 
 export const useAuth = () => {
@@ -61,6 +61,34 @@ export const useAuth = () => {
         onSuccess: () => queryClient.invalidateQueries({queryKey: ["watchlaterMovies", userIdQuery.data]})
     });
 
+    const deleteWatchLaterItemMutation = useMutation({
+        mutationFn: ({ id, userId }: { id: number; userId: string }) => {
+          return deleteWatchLaterItemAuth(id, userId);
+        },
+        onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: ["watchlaterMovies", userIdQuery.data],
+          });
+        },
+        onMutate: async ({ id, userId }) => {
+          await queryClient.cancelQueries({
+            queryKey: ["watchlaterMovies", userId],
+          });
+          const previousMovies = queryClient.getQueryData<WatchLater[]>([
+            "watchlaterMovies",
+            userId,
+          ]);
+    
+          if (previousMovies) {
+            queryClient.setQueryData<WatchLater[] | undefined>(
+              ["watchlaterMovies", userId],
+              (old) => old?.filter((w) => w.id !== id)
+            );
+          }
+          return { previousMovies };
+        },
+      });
+
     const getWatchLaterQuery = useQuery({
         queryKey: ["watchlaterMovies", userIdQuery.data],
         queryFn: () => getWatchLaterAuth(userIdQuery.data as string),
@@ -78,6 +106,7 @@ export const useAuth = () => {
         usernamesIsLoading: usernamesQuery.isLoading,
         addWatchLaterMutation,
         watchLater: getWatchLaterQuery.data,
-        watchLaterIsLoading: getWatchLaterQuery.isLoading
+        watchLaterIsLoading: getWatchLaterQuery.isLoading,
+        deleteWatchLaterItemMutation
     }
 }

@@ -89,6 +89,12 @@ export const addWatchLaterAuth = async(title: string, poster: string | null, ove
     })
 }
 
+export const deleteWatchLaterItemAuth = async(id: number, userId: string) => {
+
+    await deleteDoc(doc(db, 'watchLater', String(id) + userId))
+
+}
+
 const watchLaterCollectionRed = collection(db, 'watchLater')
 
 export const getWatchLaterAuth = async(userId: string) => {

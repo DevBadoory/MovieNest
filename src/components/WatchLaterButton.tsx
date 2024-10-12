@@ -16,7 +16,12 @@ const WatchLaterButton = ({
   type,
 }: Omit<WatchLater, "userId" | "sort">) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const { userId, addWatchLaterMutation, watchLater } = useAuth();
+  const {
+    userId,
+    addWatchLaterMutation,
+    watchLater,
+    deleteWatchLaterItemMutation,
+  } = useAuth();
 
   const findMovie = watchLater?.find((m) => m.title == title);
   useEffect(() => {
@@ -42,6 +47,10 @@ const WatchLaterButton = ({
       sort,
       type,
     });
+
+    if (isBookmarked) {
+      deleteWatchLaterItemMutation.mutate({ id, userId });
+    }
   };
   return (
     <Tooltip
