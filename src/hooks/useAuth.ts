@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { deleteUserAuth, getUsernamesAuth, signInAuth, signOutAuth, signUpAuth, userIdAuth } from "../services/auth";
+import { addWatchLaterAuth, deleteUserAuth, getUsernamesAuth, getWatchLaterAuth, signInAuth, signOutAuth, signUpAuth, userIdAuth } from "../services/auth";
 
 
 export const useAuth = () => {
@@ -45,6 +45,28 @@ export const useAuth = () => {
         queryFn: getUsernamesAuth
     })
 
+    const addWatchLaterMutation = useMutation({
+        mutationFn: ({title, poster, overview, date, id, userId, sort, type}: { 
+            title: string; 
+            poster: string | null; 
+            overview: string; 
+            date: string; 
+            id: number; 
+            userId: string; 
+            sort: number; 
+            type: string;
+        }) => { 
+            return addWatchLaterAuth(title, poster, overview, date, id, userId, sort, type);
+        },
+        onSuccess: () => queryClient.invalidateQueries({queryKey: ["watchlaterMovies", userIdQuery.data]})
+    });
+
+    const getWatchLaterQuery = useQuery({
+        queryKey: ["watchlaterMovies", userIdQuery.data],
+        queryFn: () => getWatchLaterAuth(userIdQuery.data as string),
+        enabled: !!userIdQuery.data,
+    });
+
     
     return{
         signUpMutation,
@@ -53,6 +75,9 @@ export const useAuth = () => {
         deleteUserMutation,
         userId: userIdQuery.data,
         usernames: usernamesQuery.data,
-        usernamesIsLoading: usernamesQuery.isLoading
+        usernamesIsLoading: usernamesQuery.isLoading,
+        addWatchLaterMutation,
+        watchLater: getWatchLaterQuery.data,
+        watchLaterIsLoading: getWatchLaterQuery.isLoading
     }
 }

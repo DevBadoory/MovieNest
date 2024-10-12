@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import MovieCreditsPage from "./pages/MovieCreditsPage";
 import TvShowsCredits from "./pages/TvShowsCreditsPage";
 import Login from "./pages/Login";
+import WatchList from "./pages/WatchList";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/movie/:id/credits", element: <MovieCreditsPage /> },
       { path: "/tv/:id/credits", element: <TvShowsCredits /> },
       { path: "/login", element: <Login /> },
+      { path: "/watchlist", element: <WatchList /> },
     ],
   },
 ]);

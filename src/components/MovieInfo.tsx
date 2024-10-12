@@ -18,6 +18,7 @@ import { getImageW500 } from "../services/img_path";
 import ExpandableText from "./ExpandableText";
 import MetaCriticDetailPage from "./MetaCriticDetailPage";
 import WatchLaterButton from "./WatchLaterButton";
+import { title } from "process";
 
 interface Props {
   movie: Movie;
@@ -84,7 +85,14 @@ const MovieInfo = ({ movie, crew }: Props) => {
             >
               {movie.title}
             </Heading>
-            <WatchLaterButton />
+            <WatchLaterButton
+              title={movie.title}
+              overview={movie.overview}
+              poster={movie.poster_path}
+              date={movie.release_date}
+              id={movie.id}
+              type="movie"
+            />
           </Flex>
           <HStack spacing={3} wrap="wrap" margin={{ base: "auto", md: "0" }}>
             <Text color={color} fontSize={fontSize}>

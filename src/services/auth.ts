@@ -1,11 +1,22 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { collection, deleteDoc, doc, getDocs, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { auth, db } from "../config/Firebase";
 
 export interface Username{
     username: string;
     email: string;
 }
+
+export interface WatchLater {
+    title: string;
+    overview: string;
+    poster: string | null;
+    date: string;
+    id: number;
+    userId: string;
+    sort: number
+    type: string;
+  }
 
 
 export const userIdAuth = () => {
@@ -63,4 +74,41 @@ export const getUsernamesAuth = async() => {
         })
     })
     return usernames
+}
+
+export const addWatchLaterAuth = async(title: string, poster: string | null, overview:string, date: string, id: number, userId: string, sort: number, type: string) => {
+    await setDoc(doc(db, 'watchLater', String(id) + userId),{ 
+        title: title,
+        poster: poster,
+        overview: overview,
+        date: date,
+        id: id,
+        userId: userId,
+        sort: sort,
+        type: type
+    })
+}
+
+const watchLaterCollectionRed = collection(db, 'watchLater')
+
+export const getWatchLaterAuth = async(userId: string) => {
+
+    const WatchLaterList: WatchLater[] = []
+    const q = query(watchLaterCollectionRed, where("userId", "==", userId))
+    const querySnapshot = await getDocs(q)
+
+    querySnapshot.forEach((doc) => {
+        const docData = doc.data()
+        WatchLaterList.push({
+            title: docData.title,
+            poster: docData.poster,
+            overview: docData.overview,
+            date: docData.date,
+            userId: docData.userId,
+            sort: docData.sort,
+            id: docData.id,
+            type: docData.type
+        })
+    })
+    return WatchLaterList
 }

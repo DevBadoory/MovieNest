@@ -44,6 +44,9 @@ const ProfileButton = () => {
         )}
       </MenuButton>
       <MenuList zIndex="10000">
+        <Link to="watchlist">
+          <MenuItem>Your watchlist</MenuItem>
+        </Link>
         <MenuItem onClick={() => signOutMutation.mutate()}>Sign out</MenuItem>
         <MenuItem color="red.500" onClick={() => deleteUserMutation.mutate()}>
           Delete Account
