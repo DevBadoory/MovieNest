@@ -32,13 +32,15 @@ const HomePageGrid = () => {
   const renderSkeletons = () =>
     skeletons.map((skeleton) => <SkeletonLoader key={skeleton} />);
 
+  const filtredTrends = trends?.filter((t) => t.media_type !== "person");
+
   return (
     <Box>
       {trendsLoading ? (
         <Carousel title="Trending">{renderSkeletons()}</Carousel>
       ) : (
         <Carousel title="Trending">
-          {trends?.map((trend) => (
+          {filtredTrends?.map((trend) => (
             <TrendsCard key={trend.id} trend={trend} />
           ))}
         </Carousel>

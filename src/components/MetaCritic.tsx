@@ -4,7 +4,8 @@ interface Props {
   children: number;
 }
 const MetaCritic = ({ children }: Props) => {
-  const metacritic = parseFloat(children.toFixed(1)); // Ensures the value has one decimal point
+  const metacritic =
+    typeof children == "number" ? parseFloat(children.toFixed(2)) : 0; // Ensures the value has one decimal point
 
   return (
     <Box position="relative" bottom={7} height="1.9rem">
