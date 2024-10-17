@@ -18,7 +18,6 @@ import { getImageW500 } from "../services/img_path";
 import ExpandableText from "./ExpandableText";
 import MetaCriticDetailPage from "./MetaCriticDetailPage";
 import WatchLaterButton from "./WatchLaterButton";
-import { title } from "process";
 
 interface Props {
   movie: Movie;

@@ -1,9 +1,9 @@
-import { Box, Flex, Image, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Flex, Image, useBreakpointValue } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import logo from "../assets/react.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
-import SearchInput from "./SearchInput";
 import ProfileButton from "./ProfileButton";
+import SearchInput from "./SearchInput";
 
 const NavBar = () => {
   const isMobile = useBreakpointValue({ base: true, sm: false });
