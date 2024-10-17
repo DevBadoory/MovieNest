@@ -1,4 +1,4 @@
-import { Tooltip } from "@chakra-ui/react";
+import { Button, Tooltip } from "@chakra-ui/react";
 import { faBookmark as faBookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -59,12 +59,15 @@ const WatchLaterButton = ({
       bg="gray.300"
       color="black"
     >
-      <FontAwesomeIcon
-        icon={isBookmarked ? faBookmark : faBookmarkRegular}
-        size="xl"
-        cursor="pointer"
-        onClick={handleWatchLater}
-      />
+      <Button isDisabled={!userId} colorScheme="none">
+        <FontAwesomeIcon
+          icon={isBookmarked ? faBookmark : faBookmarkRegular}
+          color="white"
+          size="xl"
+          cursor={!userId ? "revert" : "pointer"}
+          onClick={handleWatchLater}
+        />
+      </Button>
     </Tooltip>
   );
 };
