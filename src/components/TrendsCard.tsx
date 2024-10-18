@@ -18,6 +18,9 @@ const TrendsCard = ({ trend }: Props) => {
           overflow="hidden"
           src={getImageW500(trend.poster_path)}
           alt={altText}
+          objectFit="cover"
+          width="100%"
+          height="70%"
         />
       </Link>
       <MetaCritic children={trend.vote_average} />

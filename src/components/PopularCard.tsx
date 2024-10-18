@@ -18,6 +18,9 @@ const PopularCard = ({ popular }: props) => {
           overflow="hidden"
           src={getImageW500(popular.poster_path)}
           alt={altText}
+          objectFit="cover"
+          width="100%"
+          height="70%"
         />
       </Link>
       <MetaCritic children={popular.vote_average} />
