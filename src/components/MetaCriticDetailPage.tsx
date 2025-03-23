@@ -18,7 +18,7 @@ const MetaCriticDetailPage = ({ score }: Props) => {
         thickness="8px"
       >
         <CircularProgressLabel fontSize="1rem" fontWeight="bold">
-          {metacritic === 0 ? "NR" : metacritic}
+          {metacritic === 0 ? "NR" : metacritic.toFixed(1)}
         </CircularProgressLabel>
       </CircularProgress>
     </Box>
