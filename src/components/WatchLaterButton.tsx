@@ -59,13 +59,19 @@ const WatchLaterButton = ({
       bg="gray.300"
       color="black"
     >
-      <Button isDisabled={!userId} colorScheme="none">
+      <Button
+        isDisabled={!userId}
+        colorScheme="none"
+        backgroundColor="rgba(0, 0, 0, 0.5)"
+        p={0}
+        boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
+        onClick={handleWatchLater}
+      >
         <FontAwesomeIcon
           icon={isBookmarked ? faBookmark : faBookmarkRegular}
           color="white"
           size="xl"
           cursor={!userId ? "revert" : "pointer"}
-          onClick={handleWatchLater}
         />
       </Button>
     </Tooltip>
