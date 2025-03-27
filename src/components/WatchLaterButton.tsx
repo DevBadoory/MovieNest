@@ -14,7 +14,7 @@ const WatchLaterButton = ({
   id,
   date,
   type,
-}: Omit<WatchLater, "userId" | "sort">) => {
+}: Omit<WatchLater, "userId" | "dateAdded">) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const {
     userId,
@@ -35,7 +35,8 @@ const WatchLaterButton = ({
       return;
     }
 
-    const sort = 0;
+    const dateAdded = Date.now();
+    console.log(dateAdded);
 
     addWatchLaterMutation.mutate({
       title,
@@ -44,7 +45,7 @@ const WatchLaterButton = ({
       id,
       date,
       userId,
-      sort,
+      dateAdded,
       type,
     });
 
