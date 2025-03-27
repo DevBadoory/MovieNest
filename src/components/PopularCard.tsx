@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Trends from "../entities/Trends";
 import { getImageW500 } from "../services/img_path";
 import MetaCritic from "./MetaCritic";
+import WatchLaterButton from "./WatchLaterButton";
 
 interface props {
   popular: Trends;
@@ -10,8 +11,20 @@ interface props {
 
 const PopularCard = ({ popular }: props) => {
   const altText = `Poster for ${popular.title || popular.name}`;
+  const title = popular.title ?? popular.name ?? "Untitled";
+  const date = popular.release_date ?? popular.first_air_date ?? "Unknown Date";
   return (
-    <Box>
+    <Box position="relative">
+      <Box position="absolute" right="1" top="1">
+        <WatchLaterButton
+          title={title}
+          overview={popular.overview}
+          poster={popular.poster_path}
+          date={date}
+          id={popular.id}
+          type="movie"
+        />
+      </Box>
       <Link to={`movie/${popular.id}`}>
         <Image
           borderRadius="10px"
@@ -22,12 +35,10 @@ const PopularCard = ({ popular }: props) => {
       </Link>
       <MetaCritic children={popular.vote_average} />
       <Link to={`movie/${popular.id}`}>
-        <Heading fontSize={{ base: ".9rem", sm: "1.1rem" }}>
-          {popular.title || popular.name}
-        </Heading>
+        <Heading fontSize={{ base: ".9rem", sm: "1.1rem" }}>{title}</Heading>
       </Link>
       <Text mt="0.3rem" color="gray.400">
-        {popular.release_date || popular.first_air_date}
+        {date}
       </Text>
     </Box>
   );
