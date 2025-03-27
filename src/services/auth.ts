@@ -27,7 +27,7 @@ export interface WatchLater {
   date: string;
   id: number;
   userId: string;
-  sort: number;
+  dateAdded: number;
   type: string;
 }
 
@@ -107,7 +107,7 @@ export const addWatchLaterAuth = async (
   date: string,
   id: number,
   userId: string,
-  sort: number,
+  dateAdded: number,
   type: string
 ) => {
   await setDoc(doc(db, "watchLater", String(id) + userId), {
@@ -117,7 +117,7 @@ export const addWatchLaterAuth = async (
     date: date,
     id: id,
     userId: userId,
-    sort: sort,
+    dateAdded: dateAdded,
     type: type,
   });
 };
@@ -141,7 +141,7 @@ export const getWatchLaterAuth = async (userId: string) => {
       overview: docData.overview,
       date: docData.date,
       userId: docData.userId,
-      sort: docData.sort,
+      dateAdded: docData.dateAdded,
       id: docData.id,
       type: docData.type,
     });
