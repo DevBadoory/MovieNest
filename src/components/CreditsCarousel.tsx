@@ -40,7 +40,7 @@ const CreditCarousel = ({ casts, showId, type }: Props) => {
   const handleScroll = () => {
     if (!scrollRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-    setShowRightArrow(scrollLeft + clientWidth < scrollWidth - 150);
+    setShowRightArrow(scrollLeft + clientWidth < scrollWidth - 80);
   };
 
   useEffect(() => {
