@@ -9,8 +9,8 @@ export default interface Trends {
   overview: string;
   popularity: number;
   poster_path: string;
-  release_date?: string; // optional
-  title?: string; // optional
+  release_date: string;
+  title: string;
   name?: string; // optional for TV series
   first_air_date?: string; // optional for TV series
   original_name?: string; // optional for TV series

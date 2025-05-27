@@ -14,7 +14,7 @@ const WatchLaterButton = ({
   id,
   date,
   type,
-}: Omit<WatchLater, "userId" | "sort">) => {
+}: Omit<WatchLater, "userId" | "dateAdded">) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const {
     userId,
@@ -35,7 +35,8 @@ const WatchLaterButton = ({
       return;
     }
 
-    const sort = 0;
+    const dateAdded = Date.now();
+    console.log(dateAdded);
 
     addWatchLaterMutation.mutate({
       title,
@@ -44,7 +45,7 @@ const WatchLaterButton = ({
       id,
       date,
       userId,
-      sort,
+      dateAdded,
       type,
     });
 
@@ -59,13 +60,19 @@ const WatchLaterButton = ({
       bg="gray.300"
       color="black"
     >
-      <Button isDisabled={!userId} colorScheme="none">
+      <Button
+        isDisabled={!userId}
+        colorScheme="none"
+        backgroundColor="rgba(0, 0, 0, 0.5)"
+        p={0}
+        boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
+        onClick={handleWatchLater}
+      >
         <FontAwesomeIcon
           icon={isBookmarked ? faBookmark : faBookmarkRegular}
           color="white"
           size="xl"
           cursor={!userId ? "revert" : "pointer"}
-          onClick={handleWatchLater}
         />
       </Button>
     </Tooltip>

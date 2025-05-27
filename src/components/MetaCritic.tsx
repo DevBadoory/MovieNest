@@ -19,7 +19,7 @@ const MetaCritic = ({ children }: Props) => {
         borderRadius="50%"
       >
         <CircularProgressLabel color="white">
-          {metacritic === 0 ? "NR" : metacritic}
+          {metacritic === 0 ? "NR" : metacritic.toFixed(1)}
         </CircularProgressLabel>
       </CircularProgress>
     </Box>

@@ -12,7 +12,7 @@ const WatchList = () => {
       {watchLater && !watchLaterIsLoading
         ? watchLater
             .sort((a, b) => {
-              return a.sort - b.sort;
+              return b.dateAdded - a.dateAdded;
             })
             .map((w) => (
               <Flex justifyContent="space-between" mb={5} key={w.id}>
