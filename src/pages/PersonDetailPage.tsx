@@ -170,9 +170,6 @@ const PersonDetailPage = () => {
                 md: "calc(100vw - 420px)",
               }}
             >
-              <Heading as="h2" size="md">
-                Known For
-              </Heading>
               <KnownForCarousel shows={knownFor} />
             </Box>
           )}
