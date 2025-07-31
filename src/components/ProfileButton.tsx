@@ -9,7 +9,6 @@ import {
   SkeletonText,
 } from "@chakra-ui/react";
 import { useAuth } from "../hooks/useAuth";
-import { auth } from "../config/Firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -18,12 +17,10 @@ const ProfileButton = () => {
   const {
     signOutMutation,
     deleteUserMutation,
-    usernames,
     userId,
+    username,
     usernamesIsLoading,
   } = useAuth();
-
-  const user = usernames?.find((u) => u.email == auth.currentUser?.email);
 
   if (!userId && !usernamesIsLoading)
     return (
@@ -39,7 +36,7 @@ const ProfileButton = () => {
         ) : (
           <Flex gap={1.5}>
             <FontAwesomeIcon icon={faUser} size="lg" />
-            <Text fontSize="xl">{user?.username}</Text>
+            <Text fontSize="xl">{username}</Text>
           </Flex>
         )}
       </MenuButton>

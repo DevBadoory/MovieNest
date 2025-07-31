@@ -4,7 +4,7 @@ import {
   addWatchLaterAuth,
   deleteUserAuth,
   deleteWatchLaterItemAuth,
-  getUsernamesAuth,
+  getUsernameById,
   getWatchLaterAuth,
   signInAuth,
   signOutAuth,
@@ -55,9 +55,10 @@ export const useAuth = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["userId"] }),
   });
 
-  const usernamesQuery = useQuery({
-    queryKey: ["username"],
-    queryFn: getUsernamesAuth,
+  const usernameQuery = useQuery({
+    queryKey: ["username", userIdQuery.data],
+    queryFn: () => getUsernameById(userIdQuery.data as string),
+    enabled: !!userIdQuery.data,
   });
 
   const addWatchLaterMutation = useMutation({
@@ -137,8 +138,8 @@ export const useAuth = () => {
     signOutMutation,
     deleteUserMutation,
     userId: userIdQuery.data,
-    usernames: usernamesQuery.data,
-    usernamesIsLoading: usernamesQuery.isLoading,
+    username: usernameQuery.data,
+    usernamesIsLoading: usernameQuery.isLoading,
     addWatchLaterMutation,
     watchLater: getWatchLaterQuery.data,
     watchLaterIsLoading: getWatchLaterQuery.isLoading,

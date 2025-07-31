@@ -8,6 +8,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   query,
   setDoc,
@@ -84,20 +85,11 @@ export const deleteUserAuth = async () => {
   }
 };
 
-const usernamesCollectionRef = collection(db, "users");
-
-export const getUsernamesAuth = async () => {
-  const usernames: Username[] = [];
-  const querySnapshot = await getDocs(usernamesCollectionRef);
-
-  querySnapshot.forEach((user) => {
-    const userData = user.data();
-    usernames.push({
-      username: userData.username,
-      email: userData.email,
-    });
-  });
-  return usernames;
+export const getUsernameById = async (userId: string) => {
+  const userDocRef = doc(db, "users", userId);
+  const userDocSnap = await getDoc(userDocRef);
+  if (!userDocSnap.exists()) throw new Error("User not found");
+  return userDocSnap.data().username;
 };
 
 export const addWatchLaterAuth = async (
