@@ -10,15 +10,11 @@ const Signin = ({ signing }: props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { signInMutation, usernames } = useAuth();
+  const { signInMutation } = useAuth();
 
   const handleSignIn = (e: FormEvent) => {
     e.preventDefault();
 
-    if (!usernames?.find((u) => u.email == email)) {
-      setError("email address is not found");
-      return;
-    }
     signInMutation.mutate(
       { email, password },
       {
@@ -27,6 +23,7 @@ const Signin = ({ signing }: props) => {
       }
     );
   };
+
   return (
     <Box
       maxW="sm"
