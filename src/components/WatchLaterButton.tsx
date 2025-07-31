@@ -36,7 +36,6 @@ const WatchLaterButton = ({
     }
 
     const dateAdded = Date.now();
-    console.log(dateAdded);
 
     addWatchLaterMutation.mutate({
       title,
