@@ -12,7 +12,7 @@ const SignUp = ({ signing }: props) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { signUpMutation, usernames } = useAuth();
+  const { signUpMutation } = useAuth();
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,16 +36,6 @@ const SignUp = ({ signing }: props) => {
 
     if (username.length < 4) {
       setError("Username should be more than 3 characters.");
-      return;
-    }
-
-    if (usernames?.find((u) => u.username === username)) {
-      setError("Username is used.");
-      return;
-    }
-
-    if (usernames?.find((u) => u.email === email)) {
-      setError("Email is used.");
       return;
     }
 
